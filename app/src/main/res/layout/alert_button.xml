@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    style="@style/textNippon"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/alert_button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/alert_button_bg"
+    android:gravity="center"
+    android:minHeight="0dp"
+    android:paddingVertical="14dp"
+    android:textAlignment="center"
+    android:textAllCaps="false"
+    android:textColor="@android:color/holo_blue_dark" />

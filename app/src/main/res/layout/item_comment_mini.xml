@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="holder"
+            type="ceui.lisa.slinky.ui.CommentMiniHolder" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/user_snap_layout"
+            layout="@layout/item_user_snap_mini" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_content_horizontal_margin"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/textNippon"
+                android:id="@+id/comment_text"
+                android:stateListAnimator="@animator/button_press_alpha"
+                android:layout_width="match_parent"
+                android:layout_marginStart="52dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/comment_image"
+                android:layout_width="80dp"
+                android:layout_marginStart="52dp"
+                android:background="@drawable/image_place_holder"
+                android:scaleType="centerCrop"
+                android:layout_height="80dp"
+                android:layout_marginTop="6dp">
+
+            </ImageView>
+
+            <TextView
+                style="@style/textMontserratMedium"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="52dp"
+                android:layout_marginBottom="4dp"
+                android:textColor="@color/colorWhite60"
+                android:textSize="11sp"
+                android:id="@+id/date"
+                android:layout_marginTop="4dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ceui.lisa.slinky.ui.SearchViewModel" />
+    </data>
+
+    <ceui.lisa.slinky.ui.InsetLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_inset_adjust_padding="bottom"
+            app:layout_inset_padding_adjust_target="@id/comment_layout_root">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/comment_layout_root"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:id="@+id/toolbar_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/root_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+                        android:id="@+id/refresh_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+                    <include
+                        android:id="@+id/item_loading"
+                        layout="@layout/item_loading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center" />
+
+                    <include layout="@layout/deleted_frame_layout" />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/comment_layout_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/page_default_background"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/default_content_horizontal_margin">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"
+                        android:layout_toStartOf="@+id/search">
+
+                        <EditText
+                            android:id="@+id/edit_text"
+                            style="@style/textNippon"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/zcard_edittext_background"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:maxHeight="140dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="8dp"
+                            android:text="@={viewModel.word}"
+                            android:textColor="@color/white"
+                            android:textSize="13.5sp" />
+
+                        <ImageView
+                            android:id="@+id/clear_text"
+                            visibleOrGone="@{viewModel.word.trim().length() > 0}"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_gravity="end"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_round_delete"
+                            android:stateListAnimator="@animator/button_press_alpha" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/search"
+                        style="@style/textNippon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/blue_button"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="6dp"
+                        android:stateListAnimator="@animator/button_press_alpha"
+                        android:text="@string/submit_comment"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </ceui.lisa.slinky.ui.InsetLayout>
+</layout>

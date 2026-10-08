@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="ceui.lisa.slinky.models.UserGender" />
+
+        <variable
+            name="userResponse"
+            type="ceui.lisa.slinky.models.UserResponse" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/default_content_horizontal_margin">
+
+        <FrameLayout
+            android:id="@+id/user_root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:stateListAnimator="@animator/button_press_alpha">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/default_content_horizontal_margin"
+                android:orientation="horizontal">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    loadUserHead="@{userResponse.user}"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="12dp"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="1.5dp">
+
+                </de.hdodenhof.circleimageview.CircleImageView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <ceui.lisa.slinky.styles.ShrinkLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp">
+
+
+                        <TextView
+                            style="@style/textNippon"
+                            android:id="@+id/user_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            app:layout_stack_compression_priority="1"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="@{userResponse.user.name}"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            visibleOrGone="@{userResponse.user.hasGender()}"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginHorizontal="4dp"
+                            android:src="@{userResponse.user.gender == UserGender.FEMALE ? @drawable/ic_icon_female_new : @drawable/ic_icon_male_new}" />
+
+                        <ImageView
+                            android:visibility="gone"
+                            visibleOrGone="@{userResponse.user.official}"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="4dp"
+                            android:src="@drawable/ic_mark_partner" />
+
+                        <TextView
+                            android:visibility="gone"
+                            visibleOrGone="@{userResponse.premium}"
+                            android:id="@+id/role_indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="16dp"
+                            android:layout_marginEnd="4dp"
+                            style="@style/GreenMarkText"
+                            android:layout_gravity="center_vertical"
+                            android:paddingHorizontal="4dp"
+                            android:text="@string/premium"
+                            android:textSize="10sp" />
+
+                    </ceui.lisa.slinky.styles.ShrinkLayout>
+
+
+                    <TextView
+                        style="@style/textNippon"
+                        android:id="@+id/user_account"
+                        setTextWithAt="@{userResponse.user.account}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite60" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_small_chevron" />
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="36dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/follow_user"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:stateListAnimator="@animator/button_press_alpha">
+
+                <TextView
+                    style="@style/textNippon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text="@{userResponse.profile.total_follow_users.toString()}"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    style="@style/textNippon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/follow"
+                    android:textColor="@color/colorWhite60" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fans_user"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:stateListAnimator="@animator/button_press_alpha">
+
+                <TextView
+                    style="@style/textNippon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    style="@style/textNippon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fans"
+                    android:textColor="@color/colorWhite60" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pixiv_friends"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:stateListAnimator="@animator/button_press_alpha">
+
+                <TextView
+                    style="@style/textNippon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text="@{userResponse.profile.total_mypixiv_users.toString()}"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    style="@style/textNippon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pixiv_friend"
+                    android:textColor="@color/colorWhite60" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

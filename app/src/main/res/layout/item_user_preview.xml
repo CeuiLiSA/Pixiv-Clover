@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="androidx.lifecycle.LiveData&lt;ceui.lisa.slinky.models.User>" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:stateListAnimator="@animator/button_press_alpha"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="4dp"
+        android:background="@drawable/user_preview_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/user_snap_layout"
+                layout="@layout/item_user_snap"
+                app:user="@{item}" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="6dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:id="@+id/extra_place_holder"
+                android:visibility="gone"
+                android:layout_height="4dp"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:id="@+id/user_illust_frame"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginHorizontal="6dp">
+
+                <com.kproduce.roundcorners.RoundImageView
+                    app:rRadius="6dp"
+                    android:id="@+id/image_view_4"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:stateListAnimator="@animator/button_press_alpha"
+                    android:layout_marginEnd="1dp"
+                    android:background="@drawable/image_place_holder"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/image_view_5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </com.kproduce.roundcorners.RoundImageView>
+
+                <com.kproduce.roundcorners.RoundImageView
+                    app:rRadius="6dp"
+                    android:id="@+id/image_view_5"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:stateListAnimator="@animator/button_press_alpha"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="@drawable/image_place_holder"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/image_view_6"
+                    app:layout_constraintStart_toEndOf="@id/image_view_4"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.kproduce.roundcorners.RoundImageView
+                    app:rRadius="6dp"
+                    android:id="@+id/image_view_6"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="1dp"
+                    android:background="@drawable/image_place_holder"
+                    android:scaleType="centerCrop"
+                    android:stateListAnimator="@animator/button_press_alpha"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/image_view_5"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</layout>

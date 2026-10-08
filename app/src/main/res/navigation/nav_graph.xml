@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/navigation_caption_fragment"
+        android:name="ceui.lisa.slinky.ui.CaptionFragment"
+        android:label="CaptionFragment">
+
+        <argument
+            android:name="illust_id"
+            app:argType="long" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_web_fragment"
+        android:name="ceui.lisa.slinky.ui.WebFragment"
+        android:label="WebFragment" />
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="ceui.lisa.slinky.ui.HomeFragment"
+        android:label="HomeFragment" />
+
+    <fragment
+        android:id="@+id/illustFragment"
+        android:name="ceui.lisa.slinky.ui.IllustFragment"
+        android:label="IllustFragment">
+
+        <argument
+            android:name="illust_id"
+            app:argType="long" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="ceui.lisa.slinky.ui.PostFragment"
+        android:label="PostFragment" />
+
+
+    <fragment
+        android:id="@+id/rankFragment"
+        android:name="ceui.lisa.slinky.ui.RankFragment"
+        android:label="RankFragment">
+
+        <argument
+            android:name="rank_mode"
+            app:argType="string" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="ceui.lisa.slinky.ui.UserFragment"
+        android:label="UserFragment">
+
+        <argument
+            android:name="user_id"
+            app:argType="long" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/shrinkFragment"
+        android:name="ceui.lisa.slinky.ui.ShrinkFragment"
+        android:label="ShrinkFragment" />
+
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="ceui.lisa.slinky.ui.UserListFragment"
+        android:label="UserListFragment">
+
+        <argument
+            android:name="type"
+            app:argType="integer" />
+
+        <argument
+            android:name="user_id"
+            android:defaultValue="0L"
+            app:argType="long" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/userCreatedIllustFragment"
+        android:name="ceui.lisa.slinky.ui.UserCreatedIllustFragment"
+        android:label="UserCreatedIllustFragment">
+
+        <argument
+            android:name="user_id"
+            app:argType="long" />
+
+        <argument
+            android:name="type"
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_user_created_novels_fragment"
+        android:name="ceui.lisa.slinky.ui.novel.UserCreatedNovelFragment"
+        android:label="UserCreatedNovelFragment">
+
+        <argument
+            android:name="user_id"
+            app:argType="long" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_user_bookmarked_novel_fragment"
+        android:name="ceui.lisa.slinky.ui.novel.UserBookmarkedNovelFragment"
+        android:label="UserBookmarkedNovelFragment">
+
+        <argument
+            android:name="user_id"
+            app:argType="long" />
+
+        <argument
+            android:name="type"
+            app:argType="string" />
+
+        <argument
+            android:name="show_toolbar"
+            app:argType="boolean" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/userBookmarkedIllustFragment"
+        android:name="ceui.lisa.slinky.ui.UserBookmarkedIllustFragment"
+        android:label="UserBookmarkedIllustFragment">
+
+        <argument
+            android:name="user_id"
+            app:argType="long" />
+
+        <argument
+            android:name="type"
+            app:argType="string" />
+
+        <argument
+            android:name="show_toolbar"
+            app:argType="boolean" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/relatedIllustFragment"
+        android:name="ceui.lisa.slinky.ui.RelatedIllustFragment"
+        android:label="RelatedIllustFragment">
+
+        <argument
+            android:name="illust_id"
+            app:argType="long" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchIllustFragment"
+        android:name="ceui.lisa.slinky.ui.SearchIllustFragment"
+        android:label="SearchIllustFragment">
+        <argument
+            android:name="index"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/popularIllustFragment"
+        android:name="ceui.lisa.slinky.ui.PopularIllustFragment"
+        android:label="PopularIllustFragment">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchNovelFragment"
+        android:name="ceui.lisa.slinky.ui.novel.SearchNovelFragment"
+        android:label="SearchNovelFragment">
+
+        <argument
+            android:name="word"
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/popularNovelFragment"
+        android:name="ceui.lisa.slinky.ui.novel.PopularNovelFragment"
+        android:label="PopularNovelFragment">
+
+        <argument
+            android:name="word"
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/bottomDialog"
+        android:name="ceui.lisa.slinky.ui.dialog.BottomDialog"
+        android:label="BottomDialog">
+
+        <argument
+            android:name="illust_id"
+            app:argType="long" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/infoDialog"
+        android:name="ceui.lisa.slinky.ui.dialog.InfoDialog"
+        android:label="InfoDialog">
+
+        <argument
+            android:name="title"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="message"
+            app:argType="string" />
+
+        <argument
+            android:name="show_cancel"
+            app:argType="boolean" />
+
+    </dialog>
+
+    <fragment
+        android:id="@+id/trendingTagsFragment"
+        android:name="ceui.lisa.slinky.ui.TrendingTagsFragment"
+        android:label="TrendingTagsFragment">
+
+        <argument
+            android:name="type"
+            app:argType="string" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/articlesFragment"
+        android:name="ceui.lisa.slinky.ui.ArticlesFragment"
+        android:label="ArticlesFragment">
+
+        <argument
+            android:name="type"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/articlePreviewFragment"
+        android:name="ceui.lisa.slinky.ui.ArticlePreviewFragment"
+        android:label="ArticlePreviewFragment">
+
+        <argument
+            android:name="article_id"
+            app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="ceui.lisa.slinky.ui.WebViewFragment"
+        android:label="WebViewFragment">
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="ceui.lisa.slinky.ui.ViewPagerFragment"
+        android:label="ViewPagerFragment">
+
+        <argument
+            android:name="type"
+            app:argType="integer" />
+
+        <argument
+            android:name="word"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/illustViewPagerFragment"
+        android:name="ceui.lisa.slinky.ui.IllustViewPagerFragment"
+        android:label="IllustViewPagerFragment">
+
+        <argument
+            android:name="index"
+            app:argType="integer" />
+
+        <argument
+            android:name="uuid"
+            app:argType="string"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_image_detail_fragment"
+        android:name="ceui.lisa.slinky.ui.ImageFragment"
+        android:label="ImageFragment">
+
+        <argument
+            android:name="url"
+            app:argType="string" />
+
+        <argument
+            android:name="low_quality_url"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="string" />
+
+        <argument
+            android:name="illust_id"
+            app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/currentUserFragment"
+        android:name="ceui.lisa.slinky.ui.CurrentUserFragment"
+        android:label="CurrentUserFragment" />
+
+    <fragment
+        android:id="@+id/switchAccountFragment"
+        android:name="ceui.lisa.slinky.ui.SwitchAccountFragment"
+        android:label="SwitchAccountFragment" />
+
+    <fragment
+        android:id="@+id/simpleUserListFragment"
+        android:name="ceui.lisa.slinky.ui.SimpleUserListFragment"
+        android:label="UserListFragment">
+
+        <argument
+            android:name="type"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/commentListFragmentV2"
+        android:name="ceui.lisa.slinky.core.CMFragment"
+        android:label="CMFragment">
+        <argument
+            android:name="illust_id"
+            app:argType="long" />
+        <argument
+            android:name="author_id"
+            app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="ceui.lisa.slinky.ui.SearchFragment"
+        android:label="SearchFragment">
+        <argument
+            android:name="type"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recmdIllustFragment"
+        android:name="ceui.lisa.slinky.ui.RecmdIllustFragment"
+        android:label="RecmdIllustFragment" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="ceui.lisa.slinky.ui.SettingsFragment"
+        android:label="SettingsFragment" />
+
+    <fragment
+        android:id="@+id/imageViewPagerFragment"
+        android:name="ceui.lisa.slinky.ui.OriginalImageViewPagerFragment"
+        android:label="ImageViewPagerFragment">
+        <argument
+            android:name="index"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="illust_id"
+            app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/postListFragment"
+        android:name="ceui.lisa.slinky.ui.PostListFragment"
+        android:label="PostListFragment" />
+
+    <fragment
+        android:id="@+id/backgroundFragment"
+        android:name="ceui.lisa.slinky.ui.background.BackgroundFragment"
+        android:label="BackgroundFragment" />
+
+    <fragment
+        android:id="@+id/navigation_blur_background_fragment"
+        android:name="ceui.lisa.slinky.ui.background.BackgroundBlurSettingsFragment"
+        android:label="BackgroundBlurSettingsFragment" />
+
+    <fragment
+        android:id="@+id/latestIllustFragment"
+        android:name="ceui.lisa.slinky.ui.LatestIllustFragment"
+        android:label="LatestIllustFragment">
+
+        <argument
+            android:name="object_type"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/aiSettingsFragment"
+        android:name="ceui.lisa.slinky.ui.AISettingsFragment"
+        android:label="AISettingsFragment" />
+
+
+
+    <fragment
+        android:id="@+id/navigation_recmd_manga_fragment"
+        android:name="ceui.lisa.slinky.ui.RecmdMangaFragment"
+        android:label="RecmdMangaFragment" />
+
+    <fragment
+        android:id="@+id/navigation_illust_series_fragment"
+        android:name="ceui.lisa.slinky.ui.IllustSeriesFragment"
+        android:label="IllustSeriesFragment">
+        <argument
+            android:name="series_id"
+            app:argType="long" />
+        <argument
+            android:name="object_type"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_watchlist_fragment"
+        android:name="ceui.lisa.slinky.ui.watchlist.WatchlistFragment"
+        android:label="WatchListFragment">
+        <argument
+            android:name="type"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_style_fragment"
+        android:name="ceui.lisa.slinky.ui.StyleFragment"
+        android:label="StyleFragment" >
+
+        <argument
+            android:name="series_id"
+            app:argType="long" />
+        <argument
+            android:name="object_type"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_novel_text_fragment"
+        android:name="ceui.lisa.slinky.ui.novel.NovelTextFragment"
+        android:label="NovelTextFragment" >
+
+        <argument
+            android:name="novel_id"
+            app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_ranking_novel_fragment"
+        android:name="ceui.lisa.slinky.ui.novel.RankingNovelFragment"
+        android:label="RankingNovelFragment" >
+
+        <argument
+            android:name="type"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_notifications_fragment"
+        android:name="ceui.lisa.slinky.ui.NotificationFragment"
+        android:label="NotificationFragment" />
+</navigation>

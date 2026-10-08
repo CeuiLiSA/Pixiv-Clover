@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ceui.lisa.slinky.ui.SearchViewModel" />
+    </data>
+
+    <ceui.lisa.slinky.ui.InsetLayout
+        android:focusable="true"
+        android:id="@+id/search_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            app:layout_inset_adjust_margin="top"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                app:elevation="0dp"
+                android:background="@null"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/search_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    android:layout_marginHorizontal="@dimen/default_content_horizontal_margin">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="8dp"
+                            android:layout_toStartOf="@+id/search"
+                            android:layout_height="wrap_content">
+
+                            <ceui.lisa.slinky.styles.TagsFlowView
+                                android:id="@+id/tags_flow_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:tfv_cell_clickable="true"
+                                android:layout_marginHorizontal="@dimen/default_content_horizontal_margin"
+                                app:dividerDrawable="@drawable/spacer_8dp"
+                                app:flexWrap="wrap"
+                                app:showDivider="middle"
+                                app:tags="@={viewModel.tagList}">
+
+                                <LinearLayout
+                                    android:id="@+id/tag_edit_view"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/tag_height"
+                                    android:background="@drawable/tag_add_background"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
+                                    android:paddingHorizontal="@dimen/tag_padding"
+                                    android:showDividers="middle"
+                                    app:visibleOrGone="@{viewModel.tagList.size() &lt; 5}">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_pound_dark" />
+
+                                    <EditText
+                                        android:id="@+id/tag_editer"
+                                        style="@style/textNippon"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:background="@android:color/transparent"
+                                        android:hint="@string/add_keyword"
+                                        android:text="@={viewModel.inputDraft}"
+                                        android:imeOptions="actionDone"
+                                        android:inputType="text"
+                                        android:singleLine="true"
+                                        android:textColor="@android:color/white"
+                                        android:textColorHint="@color/dark_text_color"
+                                        android:textSize="13sp" />
+
+
+                                </LinearLayout>
+
+                            </ceui.lisa.slinky.styles.TagsFlowView>
+
+
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:padding="8dp"
+                                visibleOrGone="@{viewModel.word.trim().length() > 0}"
+                                android:layout_gravity="end|center_vertical"
+                                android:id="@+id/clear_text"
+                                android:stateListAnimator="@animator/button_press_alpha"
+                                android:src="@drawable/ic_round_delete"
+                                android:layout_height="36dp" />
+                        </FrameLayout>
+
+                        <TextView
+                            style="@style/textNippon"
+                            android:id="@+id/search"
+                            android:stateListAnimator="@animator/button_press_alpha"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/blue_button"
+                            android:enabled="false"
+                            android:gravity="center"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="6dp"
+                            android:text="@string/search"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:background="@null"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    app:tabMode="fixed"
+                    app:tabIndicatorFullWidth="false"
+                    app:tabTextColor="@color/white" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            </androidx.viewpager2.widget.ViewPager2>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </ceui.lisa.slinky.ui.InsetLayout>
+
+</layout>

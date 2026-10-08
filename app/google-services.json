@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "954456247705",
+    "project_id": "slinky-ae153",
+    "storage_bucket": "slinky-ae153.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954456247705:android:9ff5fca9a8f6f689af1708",
+        "android_client_info": {
+          "package_name": "ceui.lisa.slinky"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "954456247705-d0k9a1963eilpugd4db6a0kdob8q883h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4O0p8HxgJdC5kC3tQZwpCdUFbgj28q-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "954456247705-d0k9a1963eilpugd4db6a0kdob8q883h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

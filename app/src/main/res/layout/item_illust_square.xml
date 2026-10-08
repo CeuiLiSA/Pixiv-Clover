@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_margin="3dp"
+        android:layout_height="wrap_content">
+
+        <ceui.lisa.slinky.ui.InsetLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/image_place_holder"
+                android:scaleType="centerCrop"
+                android:stateListAnimator="@animator/button_press_alpha">
+
+            </ImageView>
+
+        </ceui.lisa.slinky.ui.InsetLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

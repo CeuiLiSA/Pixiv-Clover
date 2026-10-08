@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="illustList"
+            type="androidx.lifecycle.LiveData&lt;ceui.lisa.slinky.models.IllustResponse>" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/default_content_horizontal_margin">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            visibleOrInvisible="@{illustList.illusts.size() > 0}"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/image_view_1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:stateListAnimator="@animator/button_press_scale"
+                    android:layout_marginEnd="1dp"
+                    android:background="@drawable/image_place_holder"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/image_view_2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/image_view_2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:stateListAnimator="@animator/button_press_scale"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="@drawable/image_place_holder"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/image_view_3"
+                    app:layout_constraintStart_toEndOf="@id/image_view_1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/image_view_3"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="1dp"
+                    android:stateListAnimator="@animator/button_press_scale"
+                    android:background="@drawable/image_place_holder"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/image_view_2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/second_line"
+                android:layout_marginTop="2dp">
+
+                <ImageView
+                    android:id="@+id/image_view_4"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:stateListAnimator="@animator/button_press_scale"
+                    android:layout_marginEnd="1dp"
+                    android:background="@drawable/image_place_holder"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/image_view_5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/image_view_5"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:stateListAnimator="@animator/button_press_scale"
+                    android:background="@drawable/image_place_holder"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/image_view_6"
+                    app:layout_constraintStart_toEndOf="@id/image_view_4"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/image_view_6"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="1dp"
+                    android:background="@drawable/image_place_holder"
+                    android:stateListAnimator="@animator/button_press_scale"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/image_view_5"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/include_item_loading"
+                layout="@layout/item_loading"/>
+
+        </FrameLayout>
+
+    </FrameLayout>
+</layout>

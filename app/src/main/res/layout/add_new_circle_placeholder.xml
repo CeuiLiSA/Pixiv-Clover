@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="textPresent"
+            type="String" />
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/cell_add"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="21dp"
+        android:layout_marginVertical="20dp"
+        android:background="@drawable/create_new_circle_background"
+        android:gravity="center"
+        android:stateListAnimator="@animator/button_press_alpha">
+
+        <ImageView
+            android:id="@+id/icon_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_circle_cell_add" />
+
+        <TextView
+            style="@style/textNippon"
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="7dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:minLines="1"
+            android:singleLine="true"
+            android:text="@{textPresent}"
+            android:textColor="@color/colorWhite60"
+            android:textSize="16sp" />
+    </LinearLayout>
+</layout>

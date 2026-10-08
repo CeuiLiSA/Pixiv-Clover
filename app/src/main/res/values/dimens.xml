@@ -1,0 +1,348 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="tab_layout_height">48dp</dimen>
+    <dimen name="media_tab_layout_height">60dp</dimen>
+    <dimen name="tab_layout_neg_height">-48dp</dimen>
+    <dimen name="tab_bar_side_height">105dp</dimen>
+    <dimen name="tab_bar_center_height">115dp</dimen>
+    <dimen name="tab_bar_side_offset">-10dp</dimen>
+    <dimen name="tab_bar_padding_base">4dp</dimen>
+    <dimen name="tab_bar_padding_bottom">6dp</dimen>
+    <dimen name="tab_bar_popup_bottom">100dp</dimen>
+
+    <dimen name="media_tab_bar_height">36dp</dimen>
+    <dimen name="media_tab_bar_width">48dp</dimen>
+    <dimen name="media_tab_bar_radius">8dp</dimen>
+
+
+    <dimen name="user_icon_default_width">44dp</dimen>
+
+    <dimen name="chat_list_popup_x_offset">70dp</dimen>
+    <dimen name="chat_list_popup_y_offset">-20dp</dimen>
+    <!-- Widget common dimen-->
+    <dimen name="tab_bar_height">120dp</dimen>
+    <dimen name="tab_item_size">120dp</dimen>
+    <dimen name="full_button_height">54dp</dimen>
+
+    <dimen name="tag_height">34dp</dimen>
+    <dimen name="tag_padding">14dp</dimen>
+    <dimen name="tag_border_width">0.6dp</dimen>
+    <dimen name="bottom_sheet_header_radius">20dp</dimen>
+
+
+    <dimen name="holder_notification_bell">36dp</dimen>
+
+    <dimen name="task_image_size">36dp</dimen>
+
+    <dimen name="small_tag_height">20dp</dimen>
+    <dimen name="small_tag_padding">8dp</dimen>
+
+    <dimen name="dash_gap">3dp</dimen>
+    <dimen name="dash_width">4dp</dimen>
+    <dimen name="interest_dash_width">3dp</dimen>
+    <dimen name="interest_dash_gap">2dp</dimen>
+
+    <dimen name="chat_thread_cell_height">80dp</dimen>
+    <dimen name="chat_thread_icon_size">45dp</dimen>
+
+    <dimen name="embedded_padding_bottom">100dp</dimen>
+
+    <dimen name="landing_button_height">66dp</dimen>
+    <dimen name="landing_content_padding">28dp</dimen>
+    <dimen name="landing_country_code_padding">80dp</dimen>
+    <dimen name="landing_next_button_size">75dp</dimen>
+    <dimen name="landing_floating_button_margin">20dp</dimen>
+    <dimen name="landing_input_padding_h">8dp</dimen>
+
+    <dimen name="grid_expected_size">120dp</dimen>
+
+    <dimen name="chat_bottom_padding">15dp</dimen>
+
+    <dimen name="media_grid_cell_corner_raidus">12dp</dimen>
+
+    <dimen name="post_detail_user_icon_size">40dp</dimen>
+    <dimen name="tag_selected_border_width">2dp</dimen>
+    <dimen name="task_circle_width">3dp</dimen>
+    <dimen name="post_detail_spacing">20dp</dimen>
+
+    <dimen name="chat_message_list_item_spacing">10dp</dimen>
+    <dimen name="chat_message_sending_indicator">3dp</dimen>
+    <dimen name="chat_message_image_padding">140dp</dimen>
+    <dimen name="chat_message_image_minimum">70dp</dimen>
+    <dimen name="my_chat_title_size">26sp</dimen>
+    <dimen name="chat_role_play_one_row">80dp</dimen>
+    <dimen name="chat_role_play_two_row">160dp</dimen>
+    <dimen name="chat_button_padding_vertical">12dp</dimen>
+    <dimen name="chat_button_padding_horizontal">14dp</dimen>
+
+    <dimen name="post_comment_preview_height">20dp</dimen>
+    <dimen name="post_comment_preview_radius">10dp</dimen>
+
+    <dimen name="user_profile_edit_user_icon">32dp</dimen>
+    <dimen name="auto_scroll_comment_height">32dp</dimen>
+    <dimen name="auto_scroll_comment_radius">16dp</dimen>
+
+    <dimen name="circle_cell_height">36dp</dimen>
+    <dimen name="circle_cell_border_width">1dp</dimen>
+    <dimen name="circle_cell_selected_border_width">3dp</dimen>
+    <dimen name="circle_cell_corner_radius">10dp</dimen>
+    <dimen name="circle_cell_add_radius">6dp</dimen>
+    <dimen name="circle_cell_small_height">28dp</dimen>
+    <dimen name="circle_cell_padding">14dp</dimen>
+
+    <dimen name="task_cell_top_padding">140dp</dimen>
+    <dimen name="task_cell_finish_top_padding">250dp</dimen>
+    <dimen name="task_cell_min_padding">5dp</dimen>
+    <dimen name="circle_card_spacing">12dp</dimen>
+    <dimen name="chat_card_spacing">14dp</dimen>
+    <dimen name="circle_card_default_width">100dp</dimen>
+    <dimen name="user_card_spacing">14dp</dimen>
+    <dimen name="status_vertical_spacing_half">7dp</dimen>
+    <dimen name="status_horizontal_spacing_half">6dp</dimen>
+    <dimen name="status_top_margin">10dp</dimen>
+    <dimen name="status_image_grid_spacing_half">6dp</dimen>
+    <dimen name="bubble_avatar_size">36dp</dimen>
+    <dimen name="bubble_avatar_spacing">10dp</dimen>
+
+    <dimen name="language_button_height">44dp</dimen>
+    <dimen name="language_button_corner_radius">22dp</dimen>
+    <dimen name="language_button_padding">16dp</dimen>
+
+    <dimen name="zcard_edittext_corner_radius">6dp</dimen>
+
+
+    <dimen name="settings_section_space">30dp</dimen>
+
+    <dimen name="image_grid_cell_corner_radius">6dp</dimen>
+    <dimen name="image_grid_cell_spacing">6dp</dimen>
+    <dimen name="one_image_corner_radius">10dp</dimen>
+    <dimen name="media_spacing">12dp</dimen>
+    <dimen name="rich_attachment_spacing">3dp</dimen>
+
+
+    <dimen name="picked_circle_cell_height">54dp</dimen>
+    <dimen name="picked_circle_cell_corner_radius">10dp</dimen>
+
+    <dimen name="role_icon_width">50dp</dimen>
+    <dimen name="user_icon_width">45dp</dimen>
+    <dimen name="user_icon_preview">30dp</dimen>
+    <dimen name="user_icon_preview_large">36dp</dimen>
+    <dimen name="user_icon_preview_small">24dp</dimen>
+    <dimen name="mini_profile_padding_horizontal">24dp</dimen>
+
+    <dimen name="tiny_button_padding">16dp</dimen>
+    <dimen name="tiny_button_padding_half">8dp</dimen>
+    <dimen name="tiny_button_padding_neg">-16dp</dimen>
+
+    <dimen name="tiny_button_padding_small">12dp</dimen>
+    <dimen name="tiny_button_padding_small_neg">-12dp</dimen>
+
+
+    <!-- Invitation Ticket -->
+    <dimen name="invitation_ticket_corner_radius">17dp</dimen>
+    <dimen name="invitation_ticket_border_width">1dp</dimen>
+
+    <dimen name="invitation_ticket_inner_corner_radius">8dp</dimen>
+    <dimen name="invitation_ticket_inner_border_width">1.5dp</dimen>
+    <dimen name="invitation_ticket_inner_inset">9dp</dimen>
+    <dimen name="invitation_ticket_inner_dash_gap">8dp</dimen>
+
+    <dimen name="invitation_ticket_glow_inset">-5dp</dimen>
+
+
+    <dimen name="invitation_ticket_label_corner_radius">16dp</dimen>
+
+    <dimen name="invitation_ticket_interspacing">20dp</dimen>
+    <dimen name="invitation_code_shadow_radius">10dp</dimen>
+    <dimen name="invitation_invitor_shadow_radius">6dp</dimen>
+
+
+    <dimen name="achievement_size">160dp</dimen>
+
+    <dimen name="action_panel_spacing">20dp</dimen>
+    <dimen name="action_panel_item_width">74dp</dimen>
+
+
+    <dimen name="image_picker_cell_corner_radius">8dp</dimen>
+    <dimen name="image_picker_cell_corner_radius_selected">6dp</dimen>
+
+
+    <dimen name="mini_room_corner_radius">19dp</dimen>
+    <dimen name="mini_room_corner_radius_small">6dp</dimen>
+
+
+    <dimen name="shared_chat_snippet_height">100dp</dimen>
+    <dimen name="shared_chat_snippet_corner_radius">6dp</dimen>
+
+
+    <dimen name="card_compose_corner_radius">16dp</dimen>
+
+
+    <dimen name="mini_room_moved_threshold">10dp</dimen>
+
+    <dimen name="child_comment_user_icon_size">34dp</dimen>
+    <dimen name="child_comment_indent">58dp</dimen>
+
+
+    <dimen name="voice_view_height">40dp</dimen>
+    <dimen name="voice_view_radius">20dp</dimen>
+
+
+    <dimen name="voice_duration_shadow_radius">2dp</dimen>
+
+    <dimen name="banner_card_spacing">6dp</dimen>
+
+    <dimen name="name_card_end_inset">2dp</dimen>
+    <dimen name="name_card_end_inset_zero">0dp</dimen>
+
+
+    <dimen name="hair_line_width">0.6dp</dimen>
+
+    <dimen name="volume_indicator_width">2dp</dimen>
+
+
+    <dimen name="extra_bottom_padding">8dp</dimen>
+
+    <dimen name="icon_mood_image_padding">3dp</dimen>
+    <dimen name="app_push_margin_horizontal">60dp</dimen>
+
+
+    <dimen name="voice_min_height">40dp</dimen>
+    <dimen name="voice_min_width">80dp</dimen>
+
+    <dimen name="small_user_card_mini_spacing">4dp</dimen>
+    <dimen name="small_user_card_mini_width">56dp</dimen>
+    <dimen name="small_user_card_icon_mini_width">50dp</dimen>
+
+
+    <dimen name="small_user_card_spacing">12dp</dimen>
+
+    <dimen name="small_user_card_width">64dp</dimen>
+
+    <dimen name="vote_qi_size">30dp</dimen>
+    <dimen name="vote_qi_origin">40dp</dimen>
+
+    <dimen name="public_chat_red_dot_offset">5dp</dimen>
+    <dimen name="private_chat_red_dot_offset">1dp</dimen>
+
+    <dimen name="reaction_size">16dp</dimen>
+    <dimen name="reaction_padding_vertical">4dp</dimen>
+    <dimen name="reaction_padding_horizontal">6dp</dimen>
+    <dimen name="reaction_container_padding_v">12dp</dimen>
+    <dimen name="reaction_container_padding_h">14dp</dimen>
+
+    <dimen name="user_card_small">215dp</dimen>
+    <dimen name="user_card_middle">275dp</dimen>
+    <dimen name="user_card_large">315dp</dimen>
+    <dimen name="user_card_radius">10dp</dimen>
+    <dimen name="user_card_tag_height">30dp</dimen>
+
+    <dimen name="category_item_height">36dp</dimen>
+    <dimen name="category_item_small">26dp</dimen>
+
+    <dimen name="privacy_and_visibility_spacing">30dp</dimen>
+
+    <dimen name="circle_card_corner_radius">10dp</dimen>
+    <dimen name="home_circle_card_corner_radius">8dp</dimen>
+    <dimen name="small_circle_card_corner_radius">6dp</dimen>
+
+    <dimen name="invitation_ticket_invited_space">22dp</dimen>
+
+    <dimen name="small_chat_card_spacing">8dp</dimen>
+    <dimen name="small_chat_card_width">68dp</dimen>
+
+    <dimen name="school_circle_card_corner_radius">6dp</dimen>
+
+    <dimen name="category_header_min">82dp</dimen>
+
+    <dimen name="intersection_spacing">40dp</dimen>
+    <dimen name="sticker_padding">15dp</dimen>
+    <dimen name="dice_padding">15dp</dimen>
+    <dimen name="alert_item_padding_horizontal">14dp</dimen>
+    <dimen name="alert_item_padding_vertical">4dp</dimen>
+
+    <dimen name="stage_top_padding">3dp</dimen>
+    <dimen name="stage_user_info_top_padding_count1">-6dp</dimen>
+    <dimen name="stage_user_info_top_padding_count2">-20dp</dimen>
+    <dimen name="stage_user_info_top_padding_count3">-30dp</dimen>
+    <dimen name="stage_user_info_top_padding_count4">-36dp</dimen>
+    <dimen name="stage_role_name_min_width">100dp</dimen>
+    <dimen name="stage_user_name_min_width">0dp</dimen>
+
+    <dimen name="z_card_guid_edit_height">40dp</dimen>
+
+    <!--    color picker-->
+    <dimen name="sv_panel_radius">8dp</dimen>
+    <dimen name="sv_panel_border_width">1dp</dimen>
+    <dimen name="sv_panel_edge">30dp</dimen>
+    <dimen name="color_bullet_edge">20dp</dimen>
+
+    <dimen name="hue_bar_height">40dp</dimen>
+    <dimen name="hue_bar_thumb_height">50dp</dimen>
+    <dimen name="hue_bar_thumb_width">6dp</dimen>
+    <dimen name="hue_bar_thumb_raidus">3dp</dimen>
+
+    <dimen name="hue_bar_radius">6dp</dimen>
+    <dimen name="color_pointer_width">24dp</dimen>
+
+    <dimen name="color_text_radius">8dp</dimen>
+    <dimen name="color_bullet_spacing">26dp</dimen>
+
+    <dimen name="default_content_horizontal_margin">18dp</dimen>
+    <dimen name="role_play_user_head_size">130dp</dimen>
+    <dimen name="stage_item_scale_offset_level_1">18dp</dimen>
+    <dimen name="stage_item_scale_offset_level_2">-20dp</dimen>
+
+    <dimen name="tab_cell_button_horizontal_padding">10dp</dimen>
+    <dimen name="zero">0dp</dimen>
+
+    <dimen name="widget_min_width">44dp</dimen>
+    <dimen name="rich_widget_bar_height">44dp</dimen>
+    <dimen name="rich_widget_bar_radius">8dp</dimen>
+    <dimen name="rich_widget_bar_margin">8dp</dimen>
+
+    <dimen name="rich_edit_toolbar_height">48dp</dimen>
+
+
+    <dimen name="middle_progress_width">3.5dp</dimen>
+    <dimen name="middle_progress_radius">10dp</dimen>
+
+    <!-- Code Input View -->
+    <dimen name="code_input_width">40dp</dimen>
+    <dimen name="code_input_spacing">12dp</dimen>
+
+    <dimen name="code_input_width_for_small_phone">32dp</dimen>
+    <dimen name="code_input_spacing_for_small_phone">8dp</dimen>
+    <dimen name="code_input_text_size_for_small_phone">28sp</dimen>
+
+    <dimen name="code_input_code_bottom_margin">8dp</dimen>
+    <dimen name="code_input_error_top_margin">8dp</dimen>
+    <dimen name="code_input_underline_width">2dp</dimen>
+    <dimen name="code_input_text_size">34sp</dimen>
+    <dimen name="code_input_error_text_size">13sp</dimen>
+
+
+    <dimen name="one_dp">1dp</dimen>
+
+
+    <dimen name="tab_layout_cursor_height">4dp</dimen>
+    <dimen name="tab_layout_cursor_width">10dp</dimen>
+
+
+    <dimen name="abar_red_dot_size">11dp</dimen>
+    <dimen name="abar_red_dot_offset">-2dp</dimen>
+    <dimen name="user_horizontal_height">100dp</dimen>
+    <dimen name="user_horizontal_parent_height">300dp</dimen>
+
+    <dimen name="illust_horizontal_height">130dp</dimen>
+    <dimen name="playlist_app_bar_height">260dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="post_item_spacing">2dp</dimen>
+
+</resources>

@@ -1,0 +1,35 @@
+# macOS
+.DS_Store
+__MACOSX/
+
+# Gradle
+.gradle/
+build/
+.kotlin/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Local config (SDK path, signing secrets)
+local.properties
+*.jks
+*.keystore
+keystore.properties
+
+# Build outputs
+*.apk
+*.aab
+*.ap_
+*.dex
+/app/release/
+/app/debug/
+output-metadata.json
+
+# IntelliJ / Android Studio (keep shared code style only)
+*.iml
+.idea/*
+!.idea/codeStyles/
+
+# Misc
+*.log
+*.hprof

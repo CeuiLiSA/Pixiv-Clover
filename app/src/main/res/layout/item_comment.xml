@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="holder"
+            type="ceui.lisa.slinky.ui.CommentHolder" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/user_snap_layout"
+            layout="@layout/item_user_snap" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_content_horizontal_margin"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/textNippon"
+                android:id="@+id/comment_text"
+                android:stateListAnimator="@animator/button_press_alpha"
+                android:layout_width="match_parent"
+                android:layout_marginStart="75dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+
+            <ImageView
+                android:id="@+id/comment_image"
+                android:layout_width="80dp"
+                android:layout_marginStart="75dp"
+                android:background="@drawable/image_place_holder"
+                android:scaleType="centerCrop"
+                android:layout_height="80dp"
+                android:layout_marginTop="6dp">
+
+            </ImageView>
+
+            <ceui.lisa.slinky.styles.ProgressTextButton
+                android:id="@+id/show_replay"
+                visibleOrGone="@{holder.comment.has_replies &amp;&amp; holder.childComments.size() == 0}"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginStart="75dp"
+                android:layout_marginTop="6dp"
+                app:ptb_progress_stroke_width="3dp"
+                app:ptb_progress_width="15dp"
+                android:paddingHorizontal="12dp"
+                android:stateListAnimator="@animator/button_press_alpha"
+                android:text="@string/show_reply_list"
+                android:textColor="@color/purple_500">
+
+            </ceui.lisa.slinky.styles.ProgressTextButton>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:layout_marginStart="75dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/textMontserratMedium"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/colorWhite60"
+                    android:textSize="11sp"
+                    android:id="@+id/date"
+                    android:layout_height="wrap_content" />
+
+                <ceui.lisa.slinky.styles.ProgressTextButton
+                    android:id="@+id/reply_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    app:ptb_progress_stroke_width="3dp"
+                    app:ptb_progress_width="15dp"
+                    android:paddingHorizontal="12dp"
+                    android:stateListAnimator="@animator/button_press_alpha"
+                    android:text="@string/reply"
+                    android:textColor="@color/purple_500" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/child_comment_list"
+                android:layout_width="match_parent"
+                android:background="@drawable/round_corner_white20_r4"
+                visibleOrGone="@{holder.childComments.size() > 0}"
+                android:layout_marginStart="62dp"
+                android:visibility="gone"
+                android:nestedScrollingEnabled="true"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

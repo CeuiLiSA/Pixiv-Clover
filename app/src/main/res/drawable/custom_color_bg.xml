@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FF000000"/>
+    <corners android:radius="@dimen/image_picker_cell_corner_radius" />
+</shape>
+

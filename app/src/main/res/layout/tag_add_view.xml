@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="visible"
+            type="Boolean" />
+    </data>
+
+    <ceui.lisa.slinky.styles.HStack
+        android:id="@+id/tag_add_view"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/tag_height"
+        android:background="@drawable/tag_add_background"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/tag_padding"
+        android:stateListAnimator="@animator/button_press_alpha"
+        app:visibleOrGone="@{visible}">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_pound_dark" />
+
+        <TextView
+            android:id="@+id/hashtag_name"
+            style="@style/textNippon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:minLines="1"
+            android:singleLine="true"
+            android:text="添加关键字"
+            android:textColor="@color/dark_text_color"
+            android:textSize="13sp" />
+    </ceui.lisa.slinky.styles.HStack>
+</layout>

@@ -1,0 +1,279 @@
+<resources>
+    <string name="app_name">Clover</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="log_in">登录</string>
+    <string name="sign_up">注册</string>
+    <string name="rank">排行榜</string>
+    <string name="post">动态</string>
+    <string name="common">公共</string>
+    <string name="bookmarked_by_him">公开收藏</string>
+    <string name="author">作者</string>
+    <string name="item_desc">简介</string>
+    <string name="related_items">相关作品</string>
+    <string name="published_a_work">发布了一个作品</string>
+    <string name="log_in_by_slinky">使用Clover打开</string>
+    <string name="ok">我知道了</string>
+    <string name="follow">关注</string>
+    <string name="unfollow">取关</string>
+    <string name="illust_item">插画作品</string>
+    <string name="manga_item">漫画作品</string>
+    <string name="other_works">其他作品</string>
+    <string name="visit_count">阅读量：</string>
+    <string name="add_bookmark_count">添加收藏：</string>
+    <string name="title">标题</string>
+    <string name="publish_date">投稿</string>
+    <string name="tags">标签</string>
+    <string name="account_at">\@%s</string>
+    <string name="recommend_user">推荐用户</string>
+    <string name="add_bookmark">收藏</string>
+    <string name="remove_bookmark">取消收藏</string>
+    <string name="item_count">%d 个作品</string>
+    <string name="rank_list">排行榜</string>
+    <string name="button_sure">好的</string>
+    <string name="cancel">取消</string>
+    <string name="follow_success_hint">关注成功</string>
+    <string name="cant_follow_myself">无法关注自己</string>
+    <string name="follow_success_hint_private">悄悄关注成功</string>
+    <string name="unfollow_success_hint">取消关注成功</string>
+    <string name="add_bookmark_success_hint">收藏成功</string>
+    <string name="add_bookmark_success_hint_private">悄悄收藏成功</string>
+    <string name="remove_bookmark_success_hint">取消收藏成功</string>
+    <string name="sava_illust_image_success_hint">保存成功</string>
+    <string name="user_created_items">%s的创作</string>
+    <string name="user_bookmarked_items">%s的收藏</string>
+    <string name="empty_content_here">这里好像空空的</string>
+    <string name="unknown_date">未知日期</string>
+    <string name="draw_tool">绘画工具：</string>
+    <string name="resolution">分辨率：</string>
+    <string name="resolution_px">%dpx * %dpx</string>
+    <string name="my_bookmark_illust">收藏的插画漫画</string>
+    <string name="my_bookmark_novel">收藏的小说</string>
+    <string name="ranking_novel">小说排行榜</string>
+    <string name="settings">设置</string>
+    <string name="log_out">退出登录</string>
+    <string name="fans">粉丝</string>
+    <string name="pixiv_friend">好P友</string>
+    <string name="my_following">我的关注</string>
+    <string name="my_fans">我的粉丝</string>
+    <string name="logout_hint">确定退出登录吗</string>
+    <string name="show_reply_list">展开回复</string>
+    <string name="reply">回复</string>
+    <string name="mode_public">公开</string>
+    <string name="mode_private">非公开</string>
+    <string name="mode_normal">常规</string>
+    <string name="mode_popular">热度</string>
+    <string name="mode_popular_preview">热度预览</string>
+    <string name="wrong_illust_hint">该作品已被删除，或作品ID不存在。</string>
+    <string name="search">搜索</string>
+    <string name="submit_comment">评论</string>
+    <string name="more">更多</string>
+    <string name="trending_tags">热门标签</string>
+    <string name="articles">特辑</string>
+    <string name="illust">插画</string>
+    <string name="manga">漫画</string>
+    <string name="novel">小说</string>
+    <string name="illust_or_manga">插画/漫画</string>
+    <string name="rank_today">今日榜单</string>
+    <string name="show_all">查看全部</string>
+    <string name="version">Version %s</string>
+    <string name="in_developing">开发中</string>
+    <string name="related">%s相关</string>
+    <string name="item_id">作品ID：</string>
+    <string name="user_id">画师ID：</string>
+    <string name="copied">复制成功</string>
+    <string name="copy_illust_id">复制作品ID？</string>
+    <string name="copy_user_id">复制画师ID？</string>
+    <string name="copy_link">复制链接？</string>
+    <string name="unfollow_user_hint">取消关注这个用户？</string>
+    <string name="remove_bookmark_illust_hint">取消收藏这个作品？</string>
+    <string name="remove_bookmark_manga_series_hint">取消收藏这个漫画系列？</string>
+    <string name="view_history">浏览历史</string>
+    <string name="view_history_with_size">浏览历史 (%d)</string>
+    <string name="view_user_profile">访问了%s的主页</string>
+    <string name="terms_of_service">服务条款</string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="specific_exchange">关于特定商品交易法</string>
+    <string name="payment_method">关于资金支付法</string>
+    <string name="site_policy">本站方针</string>
+    <string name="pixiv">Pixiv</string>
+    <string name="help">帮助</string>
+    <string name="export_user_json">导出用户信息</string>
+    <string name="text_size">字号</string>
+    <string name="illust_in_browser">作品网页：</string>
+    <string name="user_in_browser">画师网页：</string>
+    <string name="show_illust_in_browser">插画详情显示作品网页</string>
+    <string name="show_user_in_browser">插画详情显示画师网页</string>
+    <string name="general">常规</string>
+    <string name="text_bg_color">风格</string>
+    <string name="app_background_image">背景图</string>
+    <string name="app_background_image_blur">背景图模糊</string>
+    <string name="reset_app_background_image">重置背景图</string>
+    <string name="reset_bg_image_hint">确认要重置背景图吗？</string>
+    <string name="already_default_bg_hint">当前已经是默认背景图</string>
+    <string name="playlist_track_count">共%d首歌曲</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+    <string name="action_settings">Settings</string>
+    <string name="all_tracks">全部歌曲</string>
+    <string name="about_playlist">歌单信息</string>
+    <string name="landing_terms_base">欢迎使用！继续即表示你同意 Clover 的 %s 并且确认已阅读我们的 %s.</string>
+    <string name="succeed">成功</string>
+    <string name="now_loading">加载中…</string>
+    <string name="save_origin_image">保存原图</string>
+    <string name="save_origin_image_with_index">保存原图(%d/%d)</string>
+    <string name="premium">VIP</string>
+    <string name="refresh">刷新</string>
+    <string name="follow_post">动态</string>
+    <string name="recommend">推荐</string>
+    <string name="discover">发现</string>
+    <string name="all">全部</string>
+    <string name="user">用户</string>
+    <string name="load_error">加载失败</string>
+    <string name="retry">重试</string>
+    <string name="p_size">%dP</string>
+    <string name="illust_rank">插画排行</string>
+    <string name="manga_rank">漫画排行</string>
+    <string name="jump_to">跳转</string>
+    <string name="id_search_illust_or_manga">使用ID搜索插画/漫画</string>
+    <string name="id_search_user">使用ID搜索用户</string>
+    <string name="illust_not_found">未找到相关作品</string>
+    <string name="should_input_only_number">输入框的内容应是纯数字</string>
+    <string name="user_not_found">用户不存在</string>
+    <string name="type_gif">GIF</string>
+    <string name="type_manga">MANGA</string>
+    <string name="parse_link">解析链接并跳转</string>
+    <string name="leave">离开</string>
+    <string name="this_page_is_no_longer_exist">此内容对你不可见</string>
+    <string name="update_background_successfully">背景更新成功</string>
+    <string name="download_successfully_sound">下载完成声音提醒</string>
+    <string name="task_submitting">Submitting…</string>
+    <string name="task_submitted">Submitted!</string>
+    <string name="copyright">©Copyright 2022 CeuiLiSA Clover™ PTE. LTD. All rights reserved.</string>
+    <string name="pixivision">PixiVision</string>
+    <string name="read_agreement">请先阅读并勾选协议</string>
+    <string name="related_user">相关用户</string>
+    <string name="disabled">Disabled</string>
+    <string name="unknown_error_message">Unknown Error</string>
+    <string name="connection_error">Connection Error</string>
+    <string name="clear_img_cache">清除图片缓存</string>
+    <string name="clear_gif_cache">清除GIF缓存</string>
+    <string name="clear_successfully">清除成功</string>
+    <string name="downloading">下载中…</string>
+    <string name="download_finished">下载完成!</string>
+    <string name="apply_this_image_for_background">使用本张图片作为App内背景图吗</string>
+    <string name="switch_account">切换账号</string>
+    <string name="add_account">添加账号</string>
+    <string name="its_current_account">此账号已经是当前账号</string>
+    <string name="switch_account_hint">确认切换到账号 %s 吗？</string>
+    <string name="latest_content">最新作品</string>
+    <string name="ai_works_display_settings">AI生成作品显示设置</string>
+    <string name="display_show">显示</string>
+    <string name="display_hide">隐藏</string>
+    <string name="hot_tags">热门标签</string>
+    <string name="recommend_manga">推荐漫画</string>
+    <string name="series">系列</string>
+    <string name="see_all_series">查看系列</string>
+    <string name="arthor">作者</string>
+    <string name="works">作品</string>
+    <string name="desc">简介</string>
+    <string name="series_title">系列标题</string>
+    <string name="watchlist">追更列表</string>
+    <string name="see_latest_content">查看最新话</string>
+    <string name="my_works">作品管理</string>
+    <string name="novel_works">小说作品</string>
+    <string name="publish_time">发布于: %s</string>
+    <string name="notifications">通知</string>
+    <string name="add_keyword">添加关键字</string>
+    <string name="no_need_to_blur">不需要模糊</string>
+    <string name="need_to_blur">需要模糊</string>
+    <string name="see_all">查看全部</string>
+</resources>

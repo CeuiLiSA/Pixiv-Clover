@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="ceui.lisa.slinky.models.IllustSeriesDetail" />
+
+        <variable
+            name="detail"
+            type="androidx.lifecycle.LiveData&lt;IllustSeriesDetail>" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/textNippon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/info_section_title_bg"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingHorizontal="12dp"
+            android:text="@string/series_title"
+            android:textColor="@color/primary_text_color"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/textNippon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="6dp"
+                android:layout_toStartOf="@+id/bookmark"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{detail.title}"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <ceui.lisa.slinky.styles.ProgressImageButton
+                android:id="@+id/bookmark"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:padding="2dp"
+                android:src="@{detail.watchlist_added ? @drawable/icon_illust_bookmarked : @drawable/ic_illust_not_bookmark}" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            style="@style/textNippon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/info_section_title_bg"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingHorizontal="12dp"
+            android:text="@string/desc"
+            android:textColor="@color/primary_text_color"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/desc"
+            style="@style/textNippon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@{detail.caption}"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+
+        <TextView
+            style="@style/textNippon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/info_section_title_bg"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingHorizontal="12dp"
+            android:text="@string/arthor"
+            android:textColor="@color/primary_text_color"
+            android:textSize="16sp" />
+
+        <include
+            android:id="@+id/user_snap_layout"
+            layout="@layout/item_user_snap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" />
+
+
+        <TextView
+            style="@style/textNippon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/info_section_title_bg"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingHorizontal="12dp"
+            android:text="@string/works"
+            android:textColor="@color/primary_text_color"
+            android:textSize="16sp" />
+    </LinearLayout>
+</layout>

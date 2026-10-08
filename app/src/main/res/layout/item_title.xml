@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="item"
+            type="androidx.lifecycle.LiveData&lt;ceui.lisa.slinky.models.Illust>" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_content_horizontal_margin">
+
+        <TextView
+            style="@style/textNippon"
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="6dp"
+            android:layout_toStartOf="@+id/bookmark"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
+
+        <ceui.lisa.slinky.styles.ProgressImageButton
+            android:id="@+id/bookmark"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="2dp"
+            android:src="@{item.is_bookmarked ? @drawable/icon_illust_bookmarked : @drawable/ic_illust_not_bookmark}" />
+
+    </RelativeLayout>
+</layout>

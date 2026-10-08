@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/textMontserratSemiBold"
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_home_section"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:text="@string/pixivision"
+                android:maxLines="1"
+                android:paddingStart="18dp"
+                android:textColor="@color/primary_text_color"
+                android:textSize="16sp" />
+
+
+            <TextView
+                style="@style/textNippon"
+                android:id="@+id/see_more"
+                android:text="@string/more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="@dimen/default_content_horizontal_margin"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/include_item_loading"
+                    layout="@layout/item_loading" />
+
+            </FrameLayout>
+
+            <ceui.lisa.slinky.core.NestedScrollableHost
+                android:layout_width="match_parent"
+                android:clipChildren="false"
+                android:layout_height="180dp">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/view_pager"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:clipChildren="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </ceui.lisa.slinky.core.NestedScrollableHost>
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="ceui.lisa.slinky.models.Novel"/>
+        <variable
+            name="item"
+            type="androidx.lifecycle.LiveData&lt;Novel>" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:paddingHorizontal="8dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.kproduce.roundcorners.RoundImageView
+                    android:id="@+id/cover"
+                    app:rRadius="6dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/image_place_holder"
+                    android:scaleType="centerCrop"
+                    android:layout_width="88dp"
+                    android:layout_height="124dp" />
+
+                <ImageView
+                    android:id="@+id/cover_border"
+                    android:layout_width="120dp"
+                    android:src="@drawable/ic_novel_cover_border_2"
+                    android:layout_height="160dp" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/novel_title"
+                    android:textSize="16sp"
+                    android:maxLines="2"
+                    android:ellipsize="middle"
+
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <FrameLayout
+                    android:id="@+id/novel_series_area"
+                    android:layout_width="wrap_content"
+                    android:paddingVertical="5dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/novel_series"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="3dp"
+                        android:background="@drawable/round_corner_white15_r20"
+                        android:paddingHorizontal="8dp"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textSize="11sp"
+                        android:textColor="@color/colorWhite60"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </FrameLayout>
+
+                <Space
+                    android:id="@+id/tag_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp" />
+
+                <ceui.lisa.slinky.styles.TagsFlowView
+                    android:id="@+id/tags_flow_view"
+                    android:layout_width="match_parent"
+                    app:tfv_style="small"
+                    android:layout_height="wrap_content"
+                    app:tfv_max_lines="2"
+                    app:showDivider="middle"
+                    app:dividerDrawable="@drawable/spacer_4dp"
+                    app:flexWrap="wrap">
+
+                </ceui.lisa.slinky.styles.TagsFlowView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ceui.lisa.slinky.styles.ProgressImageButton
+            visibleOrGone="@{item.id > 0 &amp;&amp; item.user.id > 0}"
+            android:id="@+id/bookmark"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="6dp"
+            android:padding="2dp"
+            android:src="@{item.is_bookmarked ? @drawable/icon_illust_bookmarked : @drawable/ic_illust_not_bookmark}" />
+    </FrameLayout>
+
+</layout>

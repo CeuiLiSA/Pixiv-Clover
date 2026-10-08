@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ceui.lisa.slinky.ui.InsetLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:lottie_autoPlay="true"
+            app:lottie_imageAssetsFolder="drifting_meet_bg"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/data"
+            app:lottie_speed="0.5" />
+
+        <ImageView
+            android:id="@+id/clover_logo"
+            android:layout_width="240dp"
+            android:stateListAnimator="@animator/button_press_scale"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/icon_landing_clover"
+            android:layout_height="240dp" />
+
+        <LinearLayout
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            app:layout_inset_adjust_padding="top|bottom">
+
+            <LinearLayout
+                android:id="@+id/checkbox_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="34dp">
+
+                <FrameLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp">
+
+                    <ImageView
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/terms_checkbox" />
+
+                </FrameLayout>
+
+
+                <TextView
+                    style="@style/textNippon"
+                    android:id="@+id/first_text"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/light_text_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+            <ceui.lisa.slinky.styles.ProgressTextButton
+                android:id="@+id/log_in"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginHorizontal="34dp"
+                android:layout_marginTop="@dimen/default_content_horizontal_margin"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/login_btn_facebook"
+                android:stateListAnimator="@animator/button_press_alpha"
+                android:text="@string/log_in"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <ceui.lisa.slinky.styles.ProgressTextButton
+                android:id="@+id/sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginHorizontal="34dp"
+                android:background="@drawable/login_btn_google"
+                android:stateListAnimator="@animator/button_press_alpha"
+                android:text="@string/sign_up"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/version_text"
+                style="@style/textMontserratMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/colorWhite40"
+                android:textSize="14sp"
+                tools:text="Version 1.2.1-3456" />
+
+        </LinearLayout>
+
+    </ceui.lisa.slinky.ui.InsetLayout>
+</layout>

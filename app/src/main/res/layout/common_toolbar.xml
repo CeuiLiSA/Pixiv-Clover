@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="actionBarItem"
+            type="ceui.lisa.slinky.ActionBarViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/place_holder"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp">
+
+        </View>
+
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingHorizontal="@dimen/default_content_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/back"
+                android:stateListAnimator="@animator/button_press_alpha"
+                srcValue="@{actionBarItem.startButtonRes}"
+                visibleOrGone="@{actionBarItem.showStartButton}"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                style="@style/textNippon"
+                android:id="@+id/wtf_title"
+                visibleOrInvisible="@{actionBarItem.showTitle}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="12dp"
+                android:layout_toStartOf="@+id/end_items"
+                android:gravity="center"
+                android:layout_toEndOf="@+id/back"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{actionBarItem.title}"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/end_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</layout>

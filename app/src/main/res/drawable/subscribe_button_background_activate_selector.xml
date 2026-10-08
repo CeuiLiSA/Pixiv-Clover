@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_activated="true">
+        <shape android:shape="rectangle">
+            <size android:width="56dp" />
+            <size android:height="56dp" />
+            <corners android:radius="10dp" />
+            <solid android:color="@color/subscribe_button_on" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <size android:width="56dp" />
+            <size android:height="56dp" />
+            <corners android:radius="10dp" />
+            <solid android:color="@color/subscribe_button_off" />
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingVertical="0dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="4dp"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+
+
+        <ceui.lisa.slinky.styles.ProgressTextButton
+            android:id="@+id/small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:ptb_progress_stroke_width="3dp"
+            android:layout_marginBottom="20dp"
+            app:ptb_progress_width="15dp"
+            android:paddingHorizontal="12dp"
+            android:stateListAnimator="@animator/button_press_alpha"
+            android:text="缩小"
+            android:textColor="@color/purple_500"/>
+
+        <ceui.lisa.slinky.styles.ProgressTextButton
+            android:id="@+id/big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="6dp"
+            app:ptb_progress_stroke_width="3dp"
+            app:ptb_progress_width="15dp"
+            android:paddingHorizontal="12dp"
+            android:stateListAnimator="@animator/button_press_alpha"
+            android:text="放大"
+            android:textColor="@color/purple_500">
+
+        </ceui.lisa.slinky.styles.ProgressTextButton>
+    </LinearLayout>
+
+
+
+</FrameLayout>

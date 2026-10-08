@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="ceui.lisa.slinky.models.UserGender" />
+
+        <variable
+            name="user"
+            type="androidx.lifecycle.LiveData&lt;ceui.lisa.slinky.models.User>" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/user_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="@dimen/default_content_horizontal_margin"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_head"
+                loadUserHead="@{user}"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="2dp">
+
+            </de.hdodenhof.circleimageview.CircleImageView>
+
+            <ceui.lisa.slinky.styles.ShrinkLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="40dp">
+
+                <TextView
+                    style="@style/textNippon"
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{user.name}"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="22sp"
+
+                    app:layout_stack_compression_priority="1" />
+
+                <ImageView
+                    visibleOrGone="@{user.hasGender()}"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="4dp"
+                    android:src="@{user.gender == UserGender.FEMALE ? @drawable/ic_icon_female_new : @drawable/ic_icon_male_new}" />
+
+                <ImageView
+                    visibleOrGone="@{user.official}"
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_mark_partner"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/role_indicator"
+                    style="@style/GreenMarkText"
+                    visibleOrGone="@{user.premium}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingHorizontal="4dp"
+                    android:text="@string/premium"
+                    android:textSize="10sp" />
+
+            </ceui.lisa.slinky.styles.ShrinkLayout>
+
+            <TextView
+                android:id="@+id/account"
+                style="@style/textMontserratMedium"
+                setTextWithAt="@{user.account}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="4dp"
+                android:includeFontPadding="false"
+                android:textColor="@color/colorWhite40"
+                android:textSize="13sp" />
+
+            <FrameLayout
+                android:id="@+id/follow_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp">
+
+                <ceui.lisa.slinky.styles.ProgressTextButton
+                    android:id="@+id/follow"
+                    style="@style/BlueShiningButton"
+                    visibleOrGone="@{!user.is_followed}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/follow"
+                    app:ptb_progress_stroke_width="3dp"
+                    app:ptb_progress_width="14dp" />
+
+                <ceui.lisa.slinky.styles.ProgressTextButton
+                    android:id="@+id/unfollow"
+                    style="@style/RedShiningButton"
+                    visibleOrGone="@{user.is_followed}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/unfollow"
+                    app:ptb_progress_stroke_width="3dp"
+                    app:ptb_progress_width="14dp" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="15dp"
+                android:gravity="center"
+                android:background="@drawable/bg_follow">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/follow_user"
+                    android:stateListAnimator="@animator/button_press_alpha"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/follow_user_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:minLines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/light_text_color"
+                        android:gravity="center"
+                        android:textSize="17sp"
+                        style="@style/textMontserratSemiBold"
+                        tools:text="33" />
+
+                    <TextView
+                        style="@style/textNippon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:minLines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/colorWhite60"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:text="@string/follow" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/pixiv_friends"
+                    android:stateListAnimator="@animator/button_press_alpha"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/pixiv_friends_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:minLines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/light_text_color"
+                        android:gravity="center"
+                        android:textSize="17sp"
+                        style="@style/textMontserratSemiBold"
+                        tools:text="44"
+                        app:layout_stack_compression_priority="1.2" />
+
+                    <TextView
+                        style="@style/textNippon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:minLines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/colorWhite60"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:text="@string/pixiv_friend" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>

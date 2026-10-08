@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@+id/deleted_frame"
+    android:layout_width="match_parent"
+    android:visibility="gone"
+    android:layout_height="match_parent"
+    android:background="@color/page_default_background"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/water_mark"
+        android:alpha="0.4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/textNippon"
+            android:id="@+id/disable_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/this_page_is_no_longer_exist"
+            android:textColor="@color/colorWhite60"
+            android:textSize="18sp" />
+
+        <ceui.lisa.slinky.styles.ProgressTextButton
+            android:id="@+id/leave_button"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textSize="16sp"
+
+            android:paddingHorizontal="24dp"
+            android:shadowDx="0"
+            android:shadowDy="1"
+            android:shadowRadius="12"
+            android:shadowColor="@color/red_button_shadow_color"
+            android:textColor="@color/buttonTextRed"
+            android:text="@string/leave"
+            android:background="@drawable/round_corner_red_r8"
+            android:layout_height="42dp" />
+
+    </LinearLayout>
+
+</FrameLayout>

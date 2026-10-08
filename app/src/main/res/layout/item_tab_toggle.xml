@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="item"
+            type="ceui.lisa.slinky.ui.TabToggleHolder" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/tab_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:stateListAnimator="@animator/button_press_alpha">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="70dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/default_content_horizontal_margin">
+
+            <TextView
+                style="@style/textNippon"
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/toggle_switch"
+                android:gravity="start"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/toggle_switch"
+                android:checked="@{item.isInitialChecked}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="6dp"
+                android:theme="@style/SwitchCompat" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5px"
+            android:background="@drawable/list_divider">
+
+        </View>
+
+    </LinearLayout>
+</layout>

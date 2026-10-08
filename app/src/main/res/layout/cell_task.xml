@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="ceui.lisa.slinky.ui.task.DownloadTask"/>
+        <variable
+            name="task"
+            type="DownloadTask" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/task_name"
+                android:text="@{task.taskName}"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/task_state"
+                android:layout_gravity="end"
+                taskState="@{task.state}"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:max="100"
+            variableProgress="@{task.liveProgress}"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</layout>

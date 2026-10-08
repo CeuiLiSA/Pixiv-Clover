@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="ceui.lisa.slinky.ui.novel.NovelChapterHolder" />
+
+        <variable
+            name="holder"
+            type="NovelChapterHolder" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/textShippori"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="@dimen/default_content_horizontal_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{holder.title}"
+            android:textColor="@color/white"
+            android:textSize="26sp" />
+
+    </FrameLayout>
+</layout>

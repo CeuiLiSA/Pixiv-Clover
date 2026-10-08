@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_content_horizontal_margin"
+        android:paddingVertical="12dp">
+
+        <TextView
+            style="@style/textNippon"
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/info_section_title_bg"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingHorizontal="12dp"
+            android:textColor="@color/primary_text_color"
+            android:textSize="16sp" />
+
+
+        <TextView
+            style="@style/textNippon"
+            android:id="@+id/see_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:stateListAnimator="@animator/button_press_alpha"
+            android:textColor="@color/purple_500" />
+    </FrameLayout>
+</layout>

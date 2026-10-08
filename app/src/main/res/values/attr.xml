@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ProgressTextButton">
+        <attr name="ptb_progress_width" format="dimension" />
+        <attr name="ptb_progress_stroke_width" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ProgressImageButton">
+        <attr name="pib_progress_width" format="dimension" />
+        <attr name="pib_progress_stroke_width" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="StackLayout">
+        <attr name="spacing" format="dimension" />
+        <attr name="android:gravity" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="StackLayout_Layout">
+        <attr name="layout_stack_compression_priority" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="TagsFlowView">
+        <attr name="tfv_style" format="enum">
+            <enum name="normal" value="0"/>
+            <enum name="small" value="1"/>
+        </attr>
+        <attr name="tfv_cell_clickable" format="boolean"/>
+        <attr name="tfv_max_lines" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShrinkLayout">
+        <attr name="shrink_id" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="InsetLayout_Layout">
+        <attr name="layout_inset_margin_adjust_target" format="reference"/>
+        <attr name="layout_inset_padding_adjust_target" format="reference"/>
+        <attr name="layout_inset_ignores_keyboard" format="boolean"/>
+        <attr name="layout_inset_bar_type" format="enum">
+            <enum name="none" value="0"/>
+            <enum name="top" value="1"/>
+            <enum name="bottom" value="2"/>
+        </attr>
+        <attr name="layout_inset_adjust_margin">
+            <flag name="top" value="0x01" />
+            <flag name="bottom" value="0x02" />
+            <flag name="left" value="0x04" />
+            <flag name="right" value="0x08" />
+        </attr>
+        <attr name="layout_inset_adjust_padding">
+            <flag name="top" value="0x01" />
+            <flag name="bottom" value="0x02" />
+            <flag name="left" value="0x04" />
+            <flag name="right" value="0x08" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CircleProgressView">
+        <attr name="cpvStrokeWidth" format="dimension"/>
+        <attr name="cpvNormalColor" format="color"/>
+        <attr name="cpvProgressColor" format="color"/>
+        <attr name="cpvStartAngle" format="integer"/>
+        <attr name="cpvSweepAngle" format="integer"/>
+        <attr name="cpvMax" format="integer"/>
+        <attr name="cpvProgress" format="integer"/>
+        <attr name="cpvDuration" format="integer"/>
+        <attr name="cpvShowTick" format="boolean"/>
+        <attr name="cpvCirclePadding" format="dimension"/>
+        <attr name="cpvTickSplitAngle" format="integer"/>
+        <attr name="cpvBlockAngle" format="integer"/>
+        <attr name="cpvTickOffsetAngle" format="integer"/>
+        <attr name="cpvTurn" format="boolean"/>
+        <attr name="cpvCapRound" format="boolean"/>
+
+    </declare-styleable>
+</resources>

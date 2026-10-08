@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ceui.lisa.slinky.ui.InsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        app:layout_inset_adjust_margin="top|bottom"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text_view"
+            android:layout_width="match_parent"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_margin="@dimen/default_content_horizontal_margin"
+            style="@style/textNippon"
+            android:layout_height="wrap_content"/>
+
+    </androidx.core.widget.NestedScrollView>
+
+</ceui.lisa.slinky.ui.InsetLayout>

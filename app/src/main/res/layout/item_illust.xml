@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="androidx.lifecycle.LiveData&lt;ceui.lisa.slinky.models.Illust>" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stateListAnimator="@animator/button_press_scale">
+
+        <com.kproduce.roundcorners.RoundImageView
+            app:rRadius="6dp"
+            android:id="@+id/image_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/image_place_holder"
+            android:scaleType="centerCrop" />
+
+        <ceui.lisa.slinky.styles.ProgressImageButton
+            visibleOrGone="@{item.id > 0 &amp;&amp; item.user.id > 0}"
+            android:id="@+id/bookmark"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="6dp"
+            android:padding="2dp"
+            android:src="@{item.is_bookmarked ? @drawable/icon_illust_bookmarked : @drawable/ic_illust_not_bookmark}" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_margin="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/p_size"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                style="@style/textBlack"
+                android:paddingTop="0.5dp"
+                android:paddingBottom="1dp"
+                android:includeFontPadding="false"
+                android:textSize="11sp"
+                android:layout_marginEnd="4dp"
+                android:paddingHorizontal="4dp"
+                android:background="@drawable/round_corner_p_size"
+                android:layout_height="wrap_content"
+                android:text="2P"
+                android:textColor="@color/white" />
+
+
+            <TextView
+                android:id="@+id/created_by_ai"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                style="@style/textBlack"
+                android:paddingTop="0.5dp"
+                android:paddingBottom="1dp"
+                android:includeFontPadding="false"
+                android:textSize="11sp"
+                android:layout_marginEnd="4dp"
+                android:paddingHorizontal="4dp"
+                android:background="@drawable/round_corner_p_size"
+                android:layout_height="wrap_content"
+                android:text="AI"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/series_label"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                style="@style/textBlack"
+                android:paddingTop="0.5dp"
+                android:paddingBottom="1dp"
+                android:includeFontPadding="false"
+                android:textSize="11sp"
+                android:layout_marginEnd="4dp"
+                android:paddingHorizontal="4dp"
+                android:background="@drawable/round_corner_p_size"
+                android:layout_height="wrap_content"
+                android:text="Series"
+                android:textColor="@color/yellow" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/type"
+                android:layout_width="wrap_content"
+                style="@style/textBlack"
+                android:paddingTop="0.5dp"
+                android:paddingBottom="1dp"
+                android:includeFontPadding="false"
+                android:textSize="11sp"
+                android:paddingHorizontal="4dp"
+                android:background="@drawable/round_corner_p_size"
+                android:layout_height="wrap_content"
+                android:text="GIF"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/disable_frame"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:background="@drawable/round_corner_red_disable_r4"
+            android:paddingVertical="4dp"
+            android:layout_margin="12dp"
+            android:layout_gravity="center"
+            android:paddingHorizontal="8dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/disable"
+                android:text="@string/disabled"
+                style="@style/textMontserratBold"
+                android:textSize="11sp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
+    </FrameLayout>
+</layout>

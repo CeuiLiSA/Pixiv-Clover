@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <color name="colorSeeAll">#FF34A6FF</color>
+    <color name="colorNotification">#FF574FAF</color>
+
+    <color name="solid_green">#FF00D08B</color>
+
+    <color name="task_image_active">#2400AFA3</color>
+
+    <color name="input_text_background">#FF1E172F</color>
+    <color name="invite_alert_background">#FF160B29</color>
+    <color name="invite_alert_background_dimmer">#E6160B29</color>
+    <color name="chat_text_background">#FF1E172F</color>
+    <color name="chat_panel_background">#FF140E23</color>
+
+    <color name="colorTextBlue">#FF34A6FF</color>
+    <color name="colorButtonBlue">#FF34A6FF</color>
+    <color name="congratsTextYellow">#FFFFE430</color>
+
+    <color name="buttonTextGreen">#FF94FFDE</color>
+    <color name="buttonTextBlue">#00E6FF</color>
+    <color name="buttonTextRed">#FF3E65</color>
+    <color name="buttonSmallStrokeGreen">#FF0DFFCC</color>
+    <color name="buttonSmallStrokeBlue">#00E6FF</color>
+    <color name="buttonSmallStrokeRed">#FF5A7E</color>
+    <color name="buttonTextYellow">#FFD21E</color>
+    <color name="buttonYellowStroke">#9AFFD21E</color>
+    <color name="buttonYellowBackground">#29CF4200</color>
+    <color name="buttonTextPurple">#744EFF</color>
+
+
+    <color name="tab_selected">#FF08FFE1</color>
+    <color name="tab_not_selected">#FF7F87C6</color>
+
+    <color name="colorRed">#FFFF3E65</color>
+    <color name="colorGreen">#FF62DB00</color>
+    <color name="colorLightGreen">#FF39E58E</color>
+    <color name="colorBlue">#FF00BCFF</color>
+    <color name="colorLightBlue">#FF5AA1E6</color>
+    <color name="colorYellow">#FFFFDC17</color>
+    <color name="colorLightPurple">#FFC8CDFF</color>
+    <color name="colorPurple">#FF1B0730</color>
+    <color name="colorPink">#FFFF4DD7</color>
+    <color name="colorLightPink">#FFFFADED</color>
+    <color name="colorDeepGreen">#FF79FFD2</color>
+    <color name="colorAccent">#FF34A6FF</color>
+    <color name="colorWhite">#FFFFFFFF</color>
+    <color name="colorWhite06">#0AFFFFFF</color>
+    <color name="colorWhite08">#14FFFFFF</color>
+    <color name="colorWhite10">#1AFFFFFF</color>
+    <color name="colorWhite20">#33FFFFFF</color>
+    <color name="colorWhite12">#1FFFFFFF</color>
+    <color name="colorWhite15">#26FFFFFF</color>
+    <color name="colorWhite25">#40FFFFFF</color>
+    <color name="colorWhite30">#4CFFFFFF</color>
+    <color name="colorWhite40">#66FFFFFF</color>
+    <color name="colorWhite50">#80FFFFFF</color>
+    <color name="colorWhite60">#99FFFFFF</color>
+    <color name="colorWhite80">#CCFFFFFF</color>
+    <color name="colorWhite85">#D9FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorBlack10">#1A000000</color>
+    <color name="colorBlack30">#4C000000</color>
+    <color name="colorBlack40">#66000000</color>
+    <color name="colorBlack50">#80000000</color>
+    <color name="colorBlack60">#99000000</color>
+    <color name="colorBlack80">#CC000000</color>
+    <color name="colorBlack90">#E6000000</color>
+    <color name="colorBlack95">#F3000000</color>
+    <color name="colorBlack08">#14000000</color>
+    <color name="colorBlackForMood">#FF666666</color>
+    <color name="colorBlackForMoodSetting">#FF999999</color>
+    <color name="colorGrey">#FF9B9B9B</color>
+
+    <color name="genderAll">#FFECAC16</color>
+    <color name="genderFemale">#FFFC38CF</color>
+    <color name="genderMale">#FF0AB2F6</color>
+
+    <color name="colorSelfRole">#CC00ED</color>
+    <color name="light_white">#33FFFFFF</color>
+
+    <color name="input_text_hint_color">#60FFFFFF</color>
+    <color name="input_text_color">#FFFFFFFF</color>
+
+    <color name="light_text_color">#FFFFFFFF</color>
+    <color name="dark_text_color">#99FFFFFF</color>
+    <color name="darker_text_color">#55FFFFFF</color>
+    <color name="list_divider">#26FFFFFF</color>
+
+    <color name="list_item_title_color">#FFFFFF</color>
+    <color name="list_item_content_color">#D0FFFFFF</color>
+
+    <color name="image_background">#1AFFFFFF</color>
+    <color name="circle_card_border">#99FFFFFF</color>
+    <color name="user_icon_border">#FFFFFFFF</color>
+    <color name="ellipsized_user_icon_overlay">#66000000</color>
+    <color name="comment_snippet_see_all">#FF00BCFF</color>
+
+    <color name="vertical_line">#2EFFFFFF</color>
+
+    <color name="comment_input_background">#FF000000</color>
+    <color name="comment_input_background_active">#FF000000</color>
+
+    <color name="section_header_background">#0AFFFFFF</color>
+
+
+    <color name="disabled_button">#14FFFFFF</color>
+    <color name="destructive">#FFEF1E57</color>
+    <color name="alert_button">#FF2F7AD5</color>
+    <color name="subscribe_button_on">#FF34A6FF</color>
+    <color name="subscribe_button_off">#FF6F718B</color>
+
+
+    <color name="page_default_background">#FF111111</color>
+    <color name="bottom_toast_background">#F30A001A</color>
+
+    <color name="dimmer">#66000000</color>
+    <color name="image_dimmer">#33000000</color>
+
+
+    <color name="about_section_text">#CCFFFFFF</color>
+
+    <color name="profile_background_default_1">#FFB06358</color>
+    <color name="profile_background_default_2">#FFA1734D</color>
+    <color name="profile_background_default_3">#FF988347</color>
+    <color name="profile_background_default_4">#FF728E51</color>
+    <color name="profile_background_default_5">#FF4A917F</color>
+    <color name="profile_background_default_6">#FF4E83A7</color>
+    <color name="profile_background_default_7">#FF7069B1</color>
+    <color name="profile_background_default_8">#FF9C58A3</color>
+    <color name="profile_background_default_9">#FFAB5573</color>
+
+    <color name="rich_text_default_text_color_1">#FF6CBE44</color>
+    <color name="rich_text_default_text_color_2">#FF00B994</color>
+    <color name="rich_text_default_text_color_3">#FF00ADF3</color>
+    <color name="rich_text_default_text_color_4">#FFF3AA00</color>
+    <color name="rich_text_default_text_color_5">#FFF1347C</color>
+
+    <color name="rich_text_default_highlight_color_1">#FF2F4030</color>
+    <color name="rich_text_default_highlight_color_2">#FF0F3F48</color>
+    <color name="rich_text_default_highlight_color_3">#FF112B51</color>
+    <color name="rich_text_default_highlight_color_4">#FF583A1C</color>
+    <color name="rich_text_default_highlight_color_5">#FF571741</color>
+
+
+    <color name="separator_color">#0FFFFFFF</color>
+    <color name="setting_text_blue">#FF34A6FF</color>
+
+    <color name="tag_placeholder_bg">#0DFFFFFF</color>
+    <color name="tag_placeholder_border">#66FFFFFF</color>
+
+    <color name="notification_enable_banner">#FFFF9222</color>
+    <color name="view_pager_shoulder">#D9000000</color>
+
+    <color name="voice_record_track_color">#33FFFFFF</color>
+    <color name="voice_record_color">#FFB332</color>
+    <color name="tip_bubble_yellow">#FFFFB332</color>
+    <color name="voice_record_color_dark">#19FFB332</color>
+    <color name="voice_green">#FF0DFFAF</color>
+
+    <color name="share_card_dark">#FF160B29</color>
+
+    <color name="circle_lock_bg">#7F000000</color>
+
+
+    <color name="invite_friends_banner_color">#34A6FF</color>
+
+
+    <color name="live_parties_title_color">#E1E4FF</color>
+    <color name="live_parties_title_shadow">#7053FF</color>
+
+    <color name="hot_circles_title_color">#D6FFFF</color>
+    <color name="hot_circles_title_shadow">#0097FF</color>
+
+    <color name="solid_blue_button_color">#34A6FF</color>
+
+    <color name="school_title_shadow">#00AAFF</color>
+    <color name="voice_button_end">#EF1E57</color>
+    <color name="voice_button_muted_bg">#626075</color>
+    <color name="voice_button_enable_bg">#00D08B</color>
+    <color name="disabled_view_bg">#313131</color>
+
+    <color name="rich_text_attachment_voice_bg">#FFFF793E</color>
+
+
+    <color name="voice_bar_bg">#FF793E</color>
+
+    <color name="transparent">#00000000</color>
+
+
+
+
+    <color name="primary_text_color">#FFFFFFFF</color>
+    <color name="secondary_text_color">#99FFFFFF</color>
+    <color name="tertiary_text_color">#55FFFFFF</color>
+
+
+    <color name="text_edit_bg">#0AFFFFFF</color>
+
+
+    <color name="rich_widget_hl">#0DFFCC</color>
+    <color name="rich_widget_default">#99FFFFFF</color>
+
+    <attr format="enum" name="andexo_aspect_ratio">
+        <enum name="aspect_1_1" value="1"/>
+        <enum name="aspect_16_9" value="2"/>
+        <enum name="aspect_4_3" value="3"/>
+        <enum name="aspect_match" value="4"/>
+        <enum name="aspect_mp3" value="5"/>
+    </attr>
+    <attr format="enum" name="andexo_loop">
+        <enum name="infinite" value="1"/>
+        <enum name="finite" value="2"/>
+    </attr>
+    <attr format="enum" name="andexo_resize_mode">
+        <enum name="Fit" value="1"/>
+        <enum name="Fill" value="2"/>
+        <enum name="Zoom" value="3"/>
+    </attr>
+    <color name="aqua">#00FFFF</color>
+    <color name="blackTransparent">#07DDDDDD</color>
+    <color name="blue">#0000FF</color>
+    <color name="divider">#C0BEBE</color>
+    <color name="fuchsia">#FF00FF</color>
+    <color name="gray">#A3A2A2</color>
+    <color name="green">#008000</color>
+    <color name="lime">#00FF00</color>
+    <color name="maroon">#800000</color>
+    <color name="navy">#000080</color>
+    <color name="olive">#808000</color>
+    <color name="purple">#800080</color>
+    <color name="red">#FF0000</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="teal">#008080</color>
+    <color name="toolbarTransparent">#95000000</color>
+    <color name="yellow">#F7E43A</color>
+    <color name="hair_line">#D8D8D8</color>
+    <dimen name="global_margin">8dp</dimen>
+    <dimen name="global_margin_extra">18dp</dimen>
+    <dimen name="global_margin_middle">12dp</dimen>
+    <dimen name="global_margin_x_extra">24dp</dimen>
+    <dimen name="global_margin_x_small">4dp</dimen>
+    <dimen name="global_padding">8dp</dimen>
+    <dimen name="global_padding_2x_extra">30dp</dimen>
+    <dimen name="global_padding_3x_extra">34dp</dimen>
+    <dimen name="global_padding_4x_extra">48dp</dimen>
+    <dimen name="global_padding_extra">18dp</dimen>
+    <dimen name="global_padding_middle">12dp</dimen>
+    <dimen name="global_padding_small">6dp</dimen>
+    <dimen name="global_padding_x_extra">24dp</dimen>
+    <dimen name="global_padding_x_small">4dp</dimen>
+    <dimen name="player_base_height">220dp</dimen>
+    <dimen name="player_controller_base_height">40dp</dimen>
+    <string name="title_retry">Try Again!</string>
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/shape_border</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+    <declare-styleable name="AndExoPlayerView">
+        <attr name="andexo_resize_mode" />
+        <attr name="andexo_aspect_ratio" />
+        <attr name="andexo_loop" />
+        <attr format="boolean" name="andexo_full_screen" />
+        <attr format="boolean" name="andexo_play_when_ready" />
+        <attr format="boolean" name="andexo_show_controller" />
+    </declare-styleable>
+
+    <color name="dialog_blur_bg">#33ffffff</color>
+
+    <color name="deepSkyBlue">#00BFFF</color>
+
+    <color name="cyan">#00FFFF</color>
+    <color name="alphaBlack">#66000000</color>
+    <color name="alphaGreen">#66008000</color>
+    <color name="alphaWhite">#66FFFFFF</color>
+    <color name="defaultText">#8A000000</color>
+    <color name="green_shadow_color">#00A88C</color>
+    <color name="blue_shadow_color">#0088A8</color>
+    <color name="red_shadow_color">#A7002A</color>
+    <color name="green_mark_text_color">#00CFA5</color>
+    <color name="green_mark_shadow_color">#009262</color>
+
+    <color name="red_button_shadow_color">#A7002A</color>
+    <color name="pixivision_header_color">#f8e71c</color>
+
+</resources>

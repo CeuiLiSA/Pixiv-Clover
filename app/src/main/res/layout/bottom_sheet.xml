@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <ceui.lisa.slinky.ui.InsetLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <ceui.lisa.slinky.styles.ProgressImageButton
+            android:id="@+id/progress_circular"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center">
+
+        </ceui.lisa.slinky.styles.ProgressImageButton>
+    </ceui.lisa.slinky.ui.InsetLayout>
+</layout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="wrap_content"
+    android:layout_height="@dimen/tag_height"
+    android:paddingHorizontal="@dimen/tag_padding"
+    android:stateListAnimator="@animator/button_press_alpha"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/pound_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_pound" />
+
+    <TextView
+        style="@style/textNippon"
+        android:id="@+id/hashtag_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:minLines="1"
+        android:singleLine="true"
+        android:textColor="@android:color/white"
+        android:textSize="13sp" />
+
+</LinearLayout>

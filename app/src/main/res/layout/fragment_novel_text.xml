@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ceui.lisa.slinky.ui.InsetLayout
+            android:id="@+id/root_layout"
+            android:layout_width="match_parent"
+            android:paddingTop="56dp"
+            android:layout_height="match_parent">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        style="@style/textNippon"
+                        android:id="@+id/novel_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="@dimen/default_content_horizontal_margin"
+                        android:textIsSelectable="true"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                </androidx.core.widget.NestedScrollView>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+            <FrameLayout
+                android:id="@+id/empty_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/post_empty_image" />
+
+                <TextView
+                    style="@style/textNippon"
+                    android:id="@+id/empty_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="5"
+                    android:minLines="1"
+                    android:text="@string/empty_content_here"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite40"
+                    android:textSize="14sp" />
+            </FrameLayout>
+
+            <ceui.lisa.slinky.styles.ProgressImageButton
+                android:id="@+id/progress_circular"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center">
+
+            </ceui.lisa.slinky.styles.ProgressImageButton>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:id="@+id/novel_toolbar"
+                android:orientation="vertical"
+                android:background="@drawable/round_corner_1a6a8e_r7"
+                android:paddingHorizontal="@dimen/default_content_horizontal_margin"
+                android:paddingTop="8dp"
+                android:paddingBottom="@dimen/default_content_horizontal_margin">
+
+                <LinearLayout
+                    android:id="@+id/novel_color_selector"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_gravity="bottom"
+                    android:orientation="horizontal"
+                    android:paddingVertical="6dp">
+
+                    <TextView
+                        style="@style/textNippon"
+                        android:id="@+id/text_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:text="@string/text_bg_color"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/style_list" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/novel_text_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:paddingVertical="6dp">
+
+                    <TextView
+                        style="@style/textNippon"
+                        android:id="@+id/text_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/text_size"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <SeekBar
+                        android:id="@+id/text_size_seekbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_toStartOf="@+id/text_size_value"
+                        android:layout_toEndOf="@+id/text_size" />
+
+                    <TextView
+                        style="@style/textNippon"
+                        android:id="@+id/text_size_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="14sp"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+        </ceui.lisa.slinky.ui.InsetLayout>
+
+        <FrameLayout
+            android:id="@+id/toolbar_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </FrameLayout>
+    </FrameLayout>
+
+</layout>

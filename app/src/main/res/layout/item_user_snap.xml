@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="ceui.lisa.slinky.models.UserGender" />
+
+        <variable
+            name="secondTitle"
+            type="String" />
+
+        <variable
+            name="authorId"
+            type="Long" />
+
+        <variable
+            name="user"
+            type="androidx.lifecycle.LiveData&lt;ceui.lisa.slinky.models.User>" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="@dimen/default_content_horizontal_margin">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_head"
+            loadUserHead="@{user}"
+            android:layout_width="45dp"
+            android:src="@drawable/mask_src_circle"
+            android:layout_height="45dp"
+            android:layout_marginEnd="8dp"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_toStartOf="@+id/follow_layout"
+                android:orientation="vertical">
+
+                <ceui.lisa.slinky.styles.ShrinkLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/textNippon"
+                        android:id="@+id/user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        app:layout_stack_compression_priority="1"
+                        android:text="@{user.name}"
+                        tools:text="user_name"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        visibleOrGone="@{user.hasGender()}"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        tools:src="@drawable/ic_icon_female_new"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginHorizontal="4dp"
+                        android:src="@{user.gender == UserGender.FEMALE ? @drawable/ic_icon_female_new : @drawable/ic_icon_male_new}" />
+
+                    <TextView
+                        visibleOrGone="@{user.id == authorId}"
+                        android:id="@+id/is_author"
+                        android:layout_width="wrap_content"
+                        android:layout_height="14dp"
+                        style="@style/GreenMarkText"
+                        android:layout_gravity="center_vertical"
+                        android:paddingHorizontal="4dp"
+                        android:text="@string/author"
+                        android:textSize="9sp" />
+
+                    <ImageView
+                        android:visibility="gone"
+                        visibleOrGone="@{user.official}"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="4dp"
+                        android:src="@drawable/ic_mark_partner" />
+
+                    <TextView
+                        visibleOrGone="@{user.premium}"
+                        android:id="@+id/role_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="14dp"
+                        style="@style/GreenMarkText"
+                        android:layout_gravity="center_vertical"
+                        android:paddingHorizontal="4dp"
+                        android:text="@string/premium"
+                        android:textSize="10sp" />
+
+                </ceui.lisa.slinky.styles.ShrinkLayout>
+
+                <TextView
+                    style="@style/textMontserratMedium"
+                    android:id="@+id/user_account"
+                    android:includeFontPadding="false"
+                    setTextWithAt="@{user.account}"
+                    visibleOrGone="@{secondTitle.length() == 0}"
+                    android:layout_width="wrap_content"
+                    tools:text="'@user_account"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:textColor="@color/colorWhite80"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    visibleOrGone="@{secondTitle.length() > 0}"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/textMontserratMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{secondTitle}"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/colorWhite80"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        style="@style/textNippon"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/publish_date"
+                        android:textColor="@color/colorWhite80"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:id="@+id/follow_layout"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content">
+
+                <ceui.lisa.slinky.styles.ProgressTextButton
+                    android:id="@+id/follow"
+                    style="@style/BlueShiningButton"
+                    android:layout_width="wrap_content"
+                    android:visibility="gone"
+                    android:layout_height="32dp"
+                    android:paddingHorizontal="16dp"
+                    visibleOrGone="@{!user.is_followed}"
+                    android:text="@{user.is_followed ? @string/unfollow : @string/follow}"
+                    app:ptb_progress_stroke_width="3dp"
+                    app:ptb_progress_width="14dp" />
+
+                <ceui.lisa.slinky.styles.ProgressTextButton
+                    android:id="@+id/unfollow"
+                    visibleOrGone="@{user.is_followed}"
+                    style="@style/RedShiningButton"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:paddingHorizontal="16dp"
+                    android:text="@{user.is_followed ? @string/unfollow : @string/follow}"
+                    app:ptb_progress_stroke_width="3dp"
+                    app:ptb_progress_width="14dp" />
+            </FrameLayout>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>

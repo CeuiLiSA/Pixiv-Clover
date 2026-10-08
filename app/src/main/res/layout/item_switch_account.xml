@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:stateListAnimator="@animator/button_press_alpha"
+        android:id="@+id/root_layout"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/user_snap_layout"
+            layout="@layout/item_user_snap"/>
+
+    </LinearLayout>
+</layout>

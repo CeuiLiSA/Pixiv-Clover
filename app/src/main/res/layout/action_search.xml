@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ceui.lisa.slinky.ui.SearchViewModel" />
+    </data>
+
+    <TextView
+        style="@style/textNippon"
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:stateListAnimator="@animator/button_press_alpha"
+        android:layout_height="wrap_content"
+        android:background="@drawable/blue_button"
+        android:enabled="false"
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="6dp"
+        android:text="@string/search"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+
+</layout>

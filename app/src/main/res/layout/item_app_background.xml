@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="ceui.lisa.slinky.ui.background.BackgroundType" />
+
+        <variable
+            name="currentBackground"
+            type="androidx.lifecycle.LiveData&lt;ceui.lisa.slinky.ui.background.AppBackground>" />
+
+        <variable
+            name="backgroundType"
+            type="Integer" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="4dp"
+                app:layout_constraintDimensionRatio="9:16"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.kproduce.roundcorners.RoundImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/image_place_holder"
+                    android:scaleType="centerCrop"
+                    android:stateListAnimator="@animator/button_press_alpha"
+                    app:rRadius="6dp" />
+
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/selected_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/icon_selected_green"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/pure_color_hint"
+            visibleOrGone="@{backgroundType == BackgroundType.PURE_COLOR}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="纯色"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/pick_gallery_hint"
+            visibleOrGone="@{backgroundType == BackgroundType.FILE_FROM_GALLERY}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="相册"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+    </FrameLayout>
+
+
+</layout>

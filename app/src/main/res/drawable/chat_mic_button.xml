@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false" android:drawable="@drawable/icon_stage_micro_phone_muted_red"/>
+    <item android:state_selected="true" android:drawable="@drawable/icon_stage_micro_phone_enable_green"/>
+    <item android:state_selected="false" android:drawable="@drawable/icon_stage_micro_phone_unable_red"/>
+</selector>

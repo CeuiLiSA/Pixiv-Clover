@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stateListAnimator="@animator/button_press_alpha"
+        android:layout_marginHorizontal="@dimen/default_content_horizontal_margin">
+
+        <TextView
+            style="@style/textNippon"
+            android:id="@+id/history_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            style="@style/textNippon"
+            android:id="@+id/view_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="6dp"
+            android:textColor="@color/colorWhite80"
+            android:textSize="12sp" />
+
+        <com.kproduce.roundcorners.RoundImageView
+            app:rRadius="4dp"
+            android:id="@+id/image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_gravity="end"
+            android:background="@drawable/image_place_holder" />
+    </FrameLayout>
+</layout>

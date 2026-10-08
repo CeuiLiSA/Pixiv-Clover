@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/illust_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:stateListAnimator="@animator/button_press_alpha">
+
+            <ImageView
+                android:id="@+id/parties_anim"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="-4dp"
+                android:layout_marginVertical="8dp"
+                android:scaleType="centerInside"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                style="@style/textNippon"
+                android:layout_width="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/illust_rank"
+                android:textColor="#DEE1FF"
+                android:textSize="18sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/manga_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:stateListAnimator="@animator/button_press_alpha">
+
+            <ImageView
+                android:id="@+id/circles_anim"
+                android:layout_marginStart="-4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginVertical="8dp"
+                android:scaleType="fitCenter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                style="@style/textNippon"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="16dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/manga_rank"
+                android:textColor="#B7FFFF"
+                android:textSize="18sp" />
+        </FrameLayout>
+
+    </LinearLayout>
+</layout>
