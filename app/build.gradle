@@ -30,15 +30,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_18
-        targetCompatibility JavaVersion.VERSION_18
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     buildFeatures {
         dataBinding true
         viewBinding true
     }
     kotlinOptions {
-        jvmTarget = '18'
+        jvmTarget = '17'
     }
     namespace 'ceui.lisa.slinky'
 }
@@ -139,7 +139,7 @@ dependencies {
 
     implementation 'com.github.KuangGang:RoundCorners:2.0.0'
 
-    def anyLayerVersion = "1.0.6"
+    def anyLayerVersion = "1.0.7"
     implementation "com.github.goweii:Layer:$anyLayerVersion"
 
     testImplementation 'junit:junit:4.+'
