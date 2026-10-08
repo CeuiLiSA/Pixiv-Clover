@@ -276,4 +276,6 @@
     <string name="no_need_to_blur">不需要模糊</string>
     <string name="need_to_blur">需要模糊</string>
     <string name="see_all">查看全部</string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
 </resources>

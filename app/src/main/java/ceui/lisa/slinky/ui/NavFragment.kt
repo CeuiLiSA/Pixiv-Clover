@@ -27,25 +27,30 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.SimpleItemAnimator
 import ceui.lisa.slinky.ActionBarViewModel
 import ceui.lisa.slinky.R
 import ceui.lisa.slinky.TaskQueue
 import ceui.lisa.slinky.databinding.ActionItemBinding
 import ceui.lisa.slinky.databinding.CommonToolbarBinding
 import ceui.lisa.slinky.handleError
+import ceui.lisa.slinky.models.Illust
+import ceui.lisa.slinky.models.Novel
+import ceui.lisa.slinky.models.ObjectType
+import ceui.lisa.slinky.models.User
+import ceui.lisa.slinky.models.WebIllust
+import ceui.lisa.slinky.network.ObjectPool
 import ceui.lisa.slinky.requireLoggedInUserId
 import ceui.lisa.slinky.safeCall
 import ceui.lisa.slinky.ui.dialog.alertNotice
 import ceui.lisa.slinky.ui.dialog.showSpinner
+import ceui.lisa.slinky.ui.novel.NovelTextFragmentArgs
 import com.blankj.utilcode.util.BarUtils
 import com.yalantis.ucrop.UCrop
-import jp.wasabeef.recyclerview.animators.OvershootInRightAnimator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 
-open class NavFragment(layoutId: Int) : Fragment(layoutId), ActionBarContainer {
+open class NavFragment(layoutId: Int) : Fragment(layoutId), ActionBarContainer, NovelAction, NovelSeriesAction, WebIllustAction {
 
     private val fragmentViewModel: NavFragmentViewModel by viewModels()
     private val actionBarViewModel: ActionBarViewModel by viewModels()
@@ -214,6 +219,39 @@ open class NavFragment(layoutId: Int) : Fragment(layoutId), ActionBarContainer {
     }
 
     override val actionbarContent: ActionBarViewModel get() = actionBarViewModel
+
+    fun onLongClickIllustImpl(illust: Illust) {
+        pushFragment(
+            R.id.imageViewPagerFragment,
+            OriginalImageViewPagerFragmentArgs(illust.id, 0).toBundle(),
+        )
+    }
+
+    fun onClickIllustImpl(illust: Illust) {
+        pushFragment(R.id.illustFragment, IllustFragmentArgs(illust.id).toBundle())
+    }
+
+    fun onClickUserImpl(user: User) {
+        pushFragment(R.id.userFragment, UserFragmentArgs(user.id).toBundle())
+    }
+
+    fun onClickNovelImpl(novel: Novel) {
+        pushFragment(R.id.navigation_novel_text_fragment, NovelTextFragmentArgs(novelId = novel.id).toBundle())
+    }
+
+
+    override fun onClickWebIllust(webIllust: WebIllust) {
+        val illust = webIllust.toIllust()
+        ObjectPool.updateIllust(illust)
+        onClickIllustImpl(illust)
+    }
+    override fun onClickNovel(novel: Novel) {
+        onClickNovelImpl(novel)
+    }
+
+    override fun onClickNovelSeries(seriesId: Long) {
+        pushFragment(R.id.navigation_style_fragment, StyleFragmentArgs(seriesId, ObjectType.NOVEL).toBundle())
+    }
 }
 
 fun Fragment.launchSuspend(block: suspend CoroutineScope.() -> Unit) {
@@ -250,15 +288,6 @@ fun Fragment.performBack() {
     }
 }
 
-fun buildItemAnimator(): SimpleItemAnimator? {
-    val animator = OvershootInRightAnimator(0.5F)
-    animator.addDuration = 300L
-    animator.removeDuration = 300L
-    animator.changeDuration = 300L
-    animator.moveDuration = 300L
-//    return animator
-    return null
-}
 
 fun Fragment.hideKeyboard() {
     context?.hideKeyboard(activity?.window)

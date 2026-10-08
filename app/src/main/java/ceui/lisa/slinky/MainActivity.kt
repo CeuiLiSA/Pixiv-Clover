@@ -1,29 +1,17 @@
 package ceui.lisa.slinky
 
-import android.animation.Animator
-import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.RenderEffect
 import android.graphics.Shader
-import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
-import android.view.View
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.OvershootInterpolator
-import android.widget.Button
-import android.widget.ImageView
-import androidx.activity.addCallback
 import androidx.activity.viewModels
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import ceui.lisa.slinky.databinding.ActivityMainBinding
@@ -32,23 +20,12 @@ import ceui.lisa.slinky.models.ErrorResponse
 import ceui.lisa.slinky.models.WebApiError
 import ceui.lisa.slinky.network.Settings
 import ceui.lisa.slinky.network.Util
-import ceui.lisa.slinky.styles.AppPushData
-import ceui.lisa.slinky.styles.AppPushMessage
 import ceui.lisa.slinky.ui.dialog.alertNotice
-import ceui.lisa.slinky.ui.launch
 import ceui.lisa.slinky.ui.screenHeight
-import ceui.lisa.slinky.ui.setOnClick
-import com.blankj.utilcode.util.ImageUtils
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
+import ceui.lisa.slinky.utils.NetworkListener
 import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import per.goweii.anylayer.AnyLayer
+import per.goweii.layer.design.cupertino.CupertinoNotificationLayer
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -79,7 +56,6 @@ class ActionBarViewModel : ViewModel() {
 }
 
 class MainViewModel : ViewModel() {
-    val appPushData = AppPushData()
     val screenshotState = MutableLiveData<Boolean>()
 }
 
@@ -99,95 +75,70 @@ class MainActivity : FullScreenActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        lifecycleScope.launchWhenResumed {
-            viewModel.appPushData.newMessage.collect { message ->
-                try {
-                    AnyLayer.notification(this@MainActivity)
-                        .title(message.title ?: "")
-                        .desc(message.body ?: "")
-                        .duration(1000L)
-                        .show()
-                } catch (e: Exception) {
-                    handleError(e)
-                }
-            }
-        }
-
-
-        val open = binding.open
-        val close = binding.close
-
         val screenshot = binding.screenshot
         screenshot.pivotX = 0F
         screenshot.pivotY = screenHeight / 2F
 
+        NetworkListener(this).startListening()
 
-        val view = binding.navHostFragment
 
-        onBackPressedDispatcher.addCallback(this, true) {
-            if (viewModel.screenshotState.value == true) {
-                close.performClick()
-            } else {
-                this.isEnabled = false
-            }
-        }
+//
+//        open.setOnClick {
+//            screenshot.isVisible = true
+//            val bitmap = ImageUtils.view2Bitmap(view)
+//            Glide.with(this).load(bitmap).listener(object : RequestListener<Drawable> {
+//                override fun onLoadFailed(
+//                    e: GlideException?,
+//                    model: Any?,
+//                    target: Target<Drawable>,
+//                    isFirstResource: Boolean
+//                ): Boolean {
+//                    return false
+//                }
+//
+//                override fun onResourceReady(
+//                    resource: Drawable,
+//                    model: Any,
+//                    target: Target<Drawable>?,
+//                    dataSource: DataSource,
+//                    isFirstResource: Boolean
+//                ): Boolean {
+//                    view.isVisible = false
+//                    val animator = ObjectAnimator.ofFloat(screenshot, View.ROTATION_Y, 0F, 6F).apply {
+//                        duration = 500L
+//                        interpolator = OvershootInterpolator(5F)
+//                    }
+//                    animator.start()
+//                    viewModel.screenshotState.value = true
+//                    return false
+//                }
+//            }).into(screenshot)
+//        }
 
-        open.setOnClick {
-            screenshot.isVisible = true
-            val bitmap = ImageUtils.view2Bitmap(view)
-            Glide.with(this).load(bitmap).listener(object : RequestListener<Drawable> {
-                override fun onLoadFailed(
-                    e: GlideException?,
-                    model: Any?,
-                    target: Target<Drawable>,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    return false
-                }
-
-                override fun onResourceReady(
-                    resource: Drawable,
-                    model: Any,
-                    target: Target<Drawable>?,
-                    dataSource: DataSource,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    view.isVisible = false
-                    val animator = ObjectAnimator.ofFloat(screenshot, View.ROTATION_Y, 0F, 6F).apply {
-                        duration = 500L
-                        interpolator = OvershootInterpolator(5F)
-                    }
-                    animator.start()
-                    viewModel.screenshotState.value = true
-                    return false
-                }
-            }).into(screenshot)
-        }
-
-        close.setOnClick {
-            val animator = ObjectAnimator.ofFloat(screenshot, View.ROTATION_Y, 6F, 0F).apply {
-                duration = 300L
-                interpolator = AccelerateInterpolator()
-                addListener(object : Animator.AnimatorListener {
-                    override fun onAnimationStart(animation: Animator) {
-
-                    }
-
-                    override fun onAnimationEnd(animation: Animator) {
-                        view.isVisible = true
-                        screenshot.isVisible = false
-                        viewModel.screenshotState.value = false
-                    }
-
-                    override fun onAnimationCancel(animation: Animator) {
-                    }
-
-                    override fun onAnimationRepeat(animation: Animator) {
-                    }
-                })
-            }
-            animator.start()
-        }
+//        close.setOnClick {
+//            val animator = ObjectAnimator.ofFloat(screenshot, View.ROTATION_Y, 6F, 0F).apply {
+//                duration = 300L
+//                interpolator = AccelerateInterpolator()
+//                addListener(object : Animator.AnimatorListener {
+//                    override fun onAnimationStart(animation: Animator) {
+//
+//                    }
+//
+//                    override fun onAnimationEnd(animation: Animator) {
+//                        view.isVisible = true
+//                        screenshot.isVisible = false
+//                        viewModel.screenshotState.value = false
+//                    }
+//
+//                    override fun onAnimationCancel(animation: Animator) {
+//                    }
+//
+//                    override fun onAnimationRepeat(animation: Animator) {
+//                    }
+//                })
+//            }
+//            animator.start()
+//        }
 
 
         Settings.settingsInstance.observe(this) { localSetting ->
@@ -206,23 +157,10 @@ class MainActivity : FullScreenActivity() {
             }
         }
     }
-
-    fun showPush(appPushMessage: AppPushMessage) {
-        lifecycleScope.launch {
-            viewModel.appPushData.addMessage(appPushMessage)
-        }
-    }
 }
 
 fun Fragment.showPush(title: String? = null, body: String? = null) {
-    val activity = activity
-    if (activity is MainActivity) {
-        if (body == null) {
-            activity.showPush(AppPushMessage(body = title))
-        } else {
-            activity.showPush(AppPushMessage(title = title, body = body))
-        }
-    }
+    activity?.showPushImpl(title, body)
 }
 
 fun FragmentActivity.safeCall(action: () -> Unit) {
@@ -259,23 +197,19 @@ fun Fragment.handleError(ex: Exception) {
 fun FragmentActivity.handleError(ex: Exception) {
     val self = this
     ex.printStackTrace()
-    if (ex is HttpException) {
-        val errorBody = ex.response()?.errorBody()?.string() ?: return
-        try {
-            val errorResponse = Util.gson.fromJson(errorBody, ErrorResponse::class.java)
-            MainScope().launch {
+    lifecycleScope.launch {
+        if (ex is HttpException) {
+            val errorBody = ex.response()?.errorBody()?.string() ?: return@launch
+            try {
+                val errorResponse = Util.gson.fromJson(errorBody, ErrorResponse::class.java)
                 alertNotice(message = errorResponse.error?.displayMessage() ?: "Unknown Error")
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            val errorResponse = Util.gson.fromJson(errorBody, WebApiError::class.java)
-            MainScope().launch {
+            } catch (e: Exception) {
+                e.printStackTrace()
+                val errorResponse = Util.gson.fromJson(errorBody, WebApiError::class.java)
                 alertNotice(message = errorResponse.message ?: ex.getHumanReadableMessage(self))
             }
-        }
-    } else {
-        if (ex !is CancellationException) {
-            MainScope().launch {
+        } else {
+            if (ex !is CancellationException) {
                 alertNotice(message = ex.message ?: "Unknown Error")
             }
         }
@@ -297,6 +231,17 @@ fun Throwable.getHumanReadableMessage(context: Context): String {
             lc
         }
     }
+}
+
+fun FragmentActivity.showPushImpl(title: String?, body: String?) {
+    CupertinoNotificationLayer(this)
+        .setContentBlurSimple(2F)
+        .setLabel(R.string.app_name)
+        .setTitle(title ?: "")
+        .setDesc(body ?: "")
+        .setTimePattern("MM-dd HH:mm")
+        .setOnNotificationClickListener { layer, _ -> layer.dismiss() }
+        .show()
 }
 
 fun requireLoggedInAccountImpl(): AccountResponse {

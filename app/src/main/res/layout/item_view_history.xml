@@ -9,12 +9,12 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stateListAnimator="@animator/button_press_alpha"
-        android:layout_marginHorizontal="@dimen/default_content_horizontal_margin">
+        android:layout_marginHorizontal="@dimen/default_content_horizontal_margin"
+        android:stateListAnimator="@animator/button_press_alpha">
 
         <TextView
-            style="@style/textNippon"
             android:id="@+id/history_hint"
+            style="@style/textNippon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
@@ -22,8 +22,8 @@
             android:textSize="16sp" />
 
         <TextView
-            style="@style/textNippon"
             android:id="@+id/view_time"
+            style="@style/textNippon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -32,11 +32,12 @@
             android:textSize="12sp" />
 
         <com.kproduce.roundcorners.RoundImageView
-            app:rRadius="4dp"
             android:id="@+id/image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="end"
-            android:background="@drawable/image_place_holder" />
+            android:background="@drawable/image_place_holder_4dp"
+            android:scaleType="centerCrop"
+            app:rRadius="4dp" />
     </FrameLayout>
 </layout>

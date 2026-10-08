@@ -153,6 +153,7 @@ data class MetaSinglePage(
 data class Tag(
     val name: String? = null,
     val tag: String? = null,
+    val userId: Long? = null,
     val ids: List<Long>? = null,
     val translated_name: String? = null
 ) : Serializable

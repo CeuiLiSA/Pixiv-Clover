@@ -29,6 +29,7 @@
             <com.kproduce.roundcorners.RoundImageView
                 android:id="@+id/image_view"
                 app:rRadius="6dp"
+                android:background="@drawable/image_place_holder_6dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:scaleType="centerCrop"

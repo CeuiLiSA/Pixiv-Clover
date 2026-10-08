@@ -15,7 +15,6 @@ import ceui.lisa.slinky.models.Novel
 import ceui.lisa.slinky.network.Client
 import ceui.lisa.slinky.ui.NovelAction
 import ceui.lisa.slinky.ui.SearchViewModel
-import ceui.lisa.slinky.ui.onClickNovelImpl
 import ceui.lisa.slinky.ui.slinkyLaunchWhenResumed
 import ceui.lisa.slinky.ui.viewBinding
 import ceui.lisa.slinky.utils.visibleOrGone

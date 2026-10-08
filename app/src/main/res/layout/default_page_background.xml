@@ -16,12 +16,4 @@
         android:layout_height="match_parent"
         android:background="@color/dimmer" />
 
-    <com.github.mmin18.widget.RealtimeBlurView
-        android:visibility="gone"
-        android:id="@+id/real_time_blur"
-        app:realtimeDownsampleFactor="1.5"
-        app:realtimeOverlayColor="@color/transparent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
 </FrameLayout>

@@ -45,4 +45,5 @@
     <item type="id" name="layer_design_cupertino_view_clip_to_outline_backup" />
     <item type="id" name="layer_design_cupertino_view_outline_provider_backup" />
     <item type="id" name="user_head_icon_tag" />
+    <item type="id" name="image_view_load_media_resource" />
 </resources>

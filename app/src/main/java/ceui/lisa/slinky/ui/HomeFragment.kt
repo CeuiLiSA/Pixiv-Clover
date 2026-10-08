@@ -78,7 +78,7 @@ class HomeFragment : NavFragment(R.layout.fragment_tab_with_bottom_bar) {
 //                          SlinkyListFragment()
 //                        MultiDownloadFragment()
 //                        ButtonFragment()
-                        SquareFragment()
+                        RecmdIllustFragment()
 //                        TestFragment()
                     }
 

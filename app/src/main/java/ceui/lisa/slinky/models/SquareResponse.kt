@@ -26,9 +26,21 @@ data class TranslatedTags(
 data class Page(
     val recommendByTag: List<Tag>? = null,
     val trendingTags: List<Tag>? = null,
+    val tags: List<Tag>? = null,
+    val follow: List<Long>? = null,
+    val ranking: RankingHolder? = null,
 ) : Serializable
 
 data class Thumbnails(
     val illust: List<WebIllust>? = null
 ) : Serializable
 
+data class RankingHolder(
+    val date: String? = null,
+    val items: List<RankingItem>? = null
+) : Serializable
+
+data class RankingItem(
+    val rank: Int = 0,
+    val id: Long = 0L
+) : Serializable

@@ -24,7 +24,6 @@ import ceui.lisa.slinky.ui.SubmittingDialog
 import ceui.lisa.slinky.ui.UserAction
 import ceui.lisa.slinky.ui.hideKeyboard
 import ceui.lisa.slinky.ui.launchSuspend
-import ceui.lisa.slinky.ui.onClickUserImpl
 import ceui.lisa.slinky.ui.setOnClick
 import ceui.lisa.slinky.ui.viewBinding
 

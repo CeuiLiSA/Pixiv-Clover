@@ -17,10 +17,10 @@ class IllustSeriesFragment : SlinkyListFragment(R.layout.fragment_slinky_list) {
 
     private val safeArgs by navArgs<IllustSeriesFragmentArgs>()
     private val viewModel by listViewModel({ safeArgs }) { args ->
-        if (args.objectType == ObjectType.ILLUST) {
-            IllustSeriesRepository(args.seriesId)
-        } else {
+        if (args.objectType == ObjectType.NOVEL) {
             NovelSeriesRepository(args.seriesId)
+        } else {
+            IllustSeriesRepository(args.seriesId)
         }
     }
 

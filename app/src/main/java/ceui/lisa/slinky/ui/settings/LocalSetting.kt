@@ -37,15 +37,12 @@ data class LocalSetting(
     override val objectUniqueId: Long = 998877665544L
 }
 
-fun NavFragment.requireLocalSetting(): LocalSetting {
-    return requireContext().requireLocalSetting()
-}
 
-fun Context.requireLocalSetting(): LocalSetting {
+fun requireLocalSetting(): LocalSetting {
     return Settings.settingsInstance.value ?: LocalSetting()
 }
 
-fun NavFragment.updateLocalSetting(setting: LocalSetting) {
+fun updateLocalSetting(setting: LocalSetting) {
     val pref = requireUserPrefImpl()
     pref.putString(LOCAL_SETTING_KEY, Util.gson.toJson(setting))
     Settings.settingsInstance.value = setting

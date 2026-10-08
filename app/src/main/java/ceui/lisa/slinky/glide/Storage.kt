@@ -1,12 +1,15 @@
 package ceui.lisa.slinky.glide
 
 import android.app.AlertDialog
+import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import androidx.core.database.getLongOrNull
 import androidx.fragment.app.Fragment
 import ceui.lisa.slinky.R
 import ceui.lisa.slinky.handleError
@@ -14,36 +17,18 @@ import ceui.lisa.slinky.models.Illust
 import ceui.lisa.slinky.network.ObjectPool
 import ceui.lisa.slinky.network.Settings
 import ceui.lisa.slinky.showPush
+import ceui.lisa.slinky.ui.dialog.alertTwoChoicesOrCancel
+import ceui.lisa.slinky.ui.dialog.alertYesOrCancel
+import ceui.lisa.slinky.ui.exist
 import ceui.lisa.slinky.ui.launchSuspend
 import ceui.lisa.slinky.utils.SoundPlay
 import ceui.lisa.slinky.utils.toGlideUrl
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import java.io.File
 import java.io.IOException
-
-
-suspend fun Fragment.selectOne(iterator: Iterable<String?>?): String {
-    if (iterator == null) {
-        return "Unknown"
-    }
-
-    val task = CompletableDeferred<String>()
-    val builder = AlertDialog.Builder(requireContext())
-    val items = mutableListOf<String>()
-    iterator.forEach {
-        items.add(it ?: "Unknown")
-    }
-    builder.setItems(
-        items.toTypedArray()
-    ) { dialog, which ->
-        task.complete(items[which])
-        dialog.dismiss()
-    }
-    builder.show()
-    return task.await()
-}
 
 
 fun Fragment.saveImageImpl(
@@ -61,21 +46,73 @@ fun Fragment.saveImageImpl(
         }
         if (url != null) {
             var isDownloadSuccessfully: Boolean
-            withContext(Dispatchers.IO) {
-                try {
-                    val file =
-                        GlideApp.with(requireContext()).asFile().load(url.toGlideUrl()).submit()
-                            .get()
-                    saveImage(ctx, file, illust, index)
-                    isDownloadSuccessfully = true
-                } catch (ex: Exception) {
-                    isDownloadSuccessfully = false
-                    handleError(ex)
+            val title = if (illust.title?.isNotEmpty() == true) {
+                illust.title
+            } else {
+                "No title"
+            }
+            var displayName = if (illust.page_count == 1) {
+                "${title}_${illust.id}.png"
+            } else {
+                "${title}_${illust.id}_${index}.png"
+            }
+            val existingMediaId = withContext(Dispatchers.IO) {
+                isImageAlreadySaved(ctx, displayName)
+            }
+            try {
+                if (existingMediaId.exist()) {
+                    require(existingMediaId != null)
+                    val ret = alertTwoChoicesOrCancel(message = "同名图片文件已存在，继续下载吗", "下载并替换原文件", "下载并同时保留两者")
+                    when (ret) {
+                        1 -> {
+                            withContext(Dispatchers.IO) {
+                                if (deleteImageFromGallery(ctx, existingMediaId)) {
+                                    Timber.d("adsadsw2 删除成功 旧的：existingMediaId ${existingMediaId}")
+                                }
+                                val file =
+                                    GlideApp.with(requireContext()).asFile().load(url.toGlideUrl()).submit()
+                                        .get()
+                                saveImage(ctx, file, displayName)
+                                isDownloadSuccessfully = true
+                            }
+                        }
+                        2 -> {
+                            withContext(Dispatchers.IO) {
+                                val existingCount = getImageCountWithSameDisplayName(ctx, displayName)
+                                Timber.d("adsadsw2 () $existingCount")
+                                val extraInfo = "_(${existingCount + 1})"
+                                val file =
+                                    GlideApp.with(requireContext()).asFile().load(url.toGlideUrl()).submit()
+                                        .get()
+                                displayName = "${displayName.split(".png")[0]}${extraInfo}.png"
+                                saveImage(ctx, file, displayName)
+                                isDownloadSuccessfully = true
+                            }
+                            isDownloadSuccessfully = true
+                        }
+                        else -> {
+                            isDownloadSuccessfully = false
+                        }
+                    }
+                } else {
+                    withContext(Dispatchers.IO) {
+                        val file =
+                            GlideApp.with(requireContext()).asFile().load(url.toGlideUrl()).submit()
+                                .get()
+                        saveImage(ctx, file, displayName)
+                        isDownloadSuccessfully = true
+                    }
                 }
+            } catch (ex: Exception) {
+                isDownloadSuccessfully = false
+                handleError(ex)
             }
             if (isDownloadSuccessfully) {
                 withContext(Dispatchers.Main) {
-                    showPush(title = getString(R.string.sava_illust_image_success_hint))
+                    showPush(
+                        title = getString(R.string.sava_illust_image_success_hint),
+                        "/Pictures/Slinky/${displayName}"
+                    )
                 }
 
                 if (Settings.settingsInstance.value?.downloadSuccessfullySound == true) {
@@ -90,21 +127,10 @@ fun Fragment.saveImageImpl(
 private fun saveImage(
     context: Context,
     file: File,
-    illust: Illust,
-    index: Int
+    displayName: String
 ) {
 
     val values = ContentValues().apply {
-        val title = if (illust.title?.isNotEmpty() == true) {
-            illust.title
-        } else {
-            "No title"
-        }
-        val displayName = if (illust.page_count == 1) {
-            "${title}_${illust.id}.png"
-        } else {
-            "${title}_${illust.id}_${index}.png"
-        }
         put(MediaStore.MediaColumns.DISPLAY_NAME, displayName)
         put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -123,10 +149,70 @@ private fun saveImage(
             it.write(file.readBytes())
         } ?: throw IOException("Failed to open output stream.")
     } catch (e: IOException) {
-
         uri?.let { orphanUri ->
             resolver.delete(orphanUri, null, null)
         }
         throw e
     }
+}
+
+fun isImageAlreadySaved(context: Context, displayName: String): Long? {
+    val projection = arrayOf(
+        MediaStore.Images.Media._ID,
+        MediaStore.Images.Media.DISPLAY_NAME
+    )
+    val selection = "${MediaStore.Images.Media.DISPLAY_NAME} = ?"
+    val selectionArgs = arrayOf(displayName)
+
+    val cursor = context.contentResolver.query(
+        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+        projection,
+        selection,
+        selectionArgs,
+        null
+    )
+
+    var existingMediaId: Long? = null
+
+    if (cursor != null && cursor.moveToFirst()) {
+        existingMediaId = cursor.getLongOrNull(0)
+    }
+
+    cursor?.close()
+
+
+    Timber.d("adsadsw2 existingMediaId ${existingMediaId}")
+
+    return existingMediaId
+}
+
+fun deleteImageFromGallery(context: Context, imageId: Long): Boolean {
+    val resolver: ContentResolver = context.contentResolver
+    val uri: Uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+    val selection = "${MediaStore.Images.Media._ID} = ?"
+    val selectionArgs = arrayOf(imageId.toString())
+    val deletedRows = resolver.delete(uri, selection, selectionArgs)
+    return deletedRows > 0
+}
+
+fun getImageCountWithSameDisplayName(context: Context, displayName: String): Int {
+    val projection = arrayOf(
+        MediaStore.Images.Media._ID,
+        MediaStore.Images.Media.DISPLAY_NAME
+    )
+    val selection = "${MediaStore.Images.Media.DISPLAY_NAME} LIKE ?"
+    val selectionArgs = arrayOf("$displayName%")
+
+    val cursor = context.contentResolver.query(
+        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+        projection,
+        selection,
+        selectionArgs,
+        null
+    )
+
+    val count = cursor?.count ?: 0
+    cursor?.close()
+
+    return count
 }

@@ -12,12 +12,12 @@ import timber.log.Timber
 class Slinky : Application() {
 
     override fun onCreate() {
-        MMKV.initialize(this)
         super.onCreate()
         RoomDB.attach(this)
-        Settings.loadSettings()
+        MMKV.initialize(this)
         SoundPlay.init(this)
         Timber.plant(Timber.DebugTree())
+        Settings.loadSettings()
         PreferencePool.load()
     }
 }

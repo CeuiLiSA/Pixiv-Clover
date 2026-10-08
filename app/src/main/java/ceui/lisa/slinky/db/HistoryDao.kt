@@ -15,6 +15,9 @@ interface HistoryDao {
     @Query("SELECT * FROM view_history WHERE object_type = :type ORDER BY visit_time DESC")
     suspend fun getHistoryByType(type: Int): List<ViewHistory>
 
+    @Query("SELECT COUNT(1) FROM view_history WHERE object_type = :type")
+    suspend fun getCountByType(type: Int): Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertViewHistory(viewHistory: ViewHistory)
 

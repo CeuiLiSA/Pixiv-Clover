@@ -15,7 +15,7 @@ data class RefreshHint(
         PULL_TO_REFRESH,
         INITIAL_LOAD,
         LOAD_MORE,
-        ERROR_RETRY,
+        RETRY,
     }
 
     companion object {
@@ -31,8 +31,8 @@ data class RefreshHint(
             return RefreshHint(Cause.LOAD_MORE)
         }
 
-        fun errorRetry(): RefreshHint {
-            return RefreshHint(Cause.ERROR_RETRY)
+        fun retry(): RefreshHint {
+            return RefreshHint(Cause.RETRY)
         }
     }
 }

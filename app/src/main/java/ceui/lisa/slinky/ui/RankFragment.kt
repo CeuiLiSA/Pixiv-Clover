@@ -188,8 +188,6 @@ class IllustItemViewHolder(aa: ItemIllustBinding) :
         GlideApp.with(context)
             .load(illust.image_urls?.large)
             .into(binding.imageView)
-
-//        binding.disableFrame.isVisible = illust.isDisabled()
     }
 }
 

@@ -27,7 +27,6 @@ import ceui.lisa.slinky.ui.didClickFollowUser
 import ceui.lisa.slinky.ui.didLongClickFollowUser
 import ceui.lisa.slinky.ui.findActionReceiverOrNull
 import ceui.lisa.slinky.ui.findFragmentOrNull
-import ceui.lisa.slinky.ui.onClickUserImpl
 import ceui.lisa.slinky.ui.pxValue
 import ceui.lisa.slinky.ui.setOnClick
 import ceui.lisa.slinky.ui.showIllust

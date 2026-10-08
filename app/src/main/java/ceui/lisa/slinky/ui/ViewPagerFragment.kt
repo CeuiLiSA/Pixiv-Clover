@@ -6,17 +6,25 @@ import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import ceui.lisa.slinky.ActionItem
 import ceui.lisa.slinky.R
 import ceui.lisa.slinky.core.Event
 import ceui.lisa.slinky.core.combineLatest
+import ceui.lisa.slinky.core.showKeyboard
 import ceui.lisa.slinky.databinding.FragmentViewPagerBinding
 import ceui.lisa.slinky.models.ObjectType
 import ceui.lisa.slinky.models.Tag
+import ceui.lisa.slinky.network.RoomDB
 import ceui.lisa.slinky.requireLoggedInAccountImpl
 import ceui.lisa.slinky.requireLoggedInUserId
+import ceui.lisa.slinky.ui.dialog.Action
+import ceui.lisa.slinky.ui.dialog.moveCursorToEnd
+import ceui.lisa.slinky.ui.dialog.showActionMenu
 import ceui.lisa.slinky.ui.novel.FollowUsersNovelFragment
 import ceui.lisa.slinky.ui.novel.LatestNovelFragment
 import ceui.lisa.slinky.ui.novel.NovelHistoryFragment
@@ -36,6 +44,12 @@ import ceui.lisa.slinky.ui.watchlist.WatchlistFragment
 import ceui.lisa.slinky.ui.watchlist.WatchlistFragmentArgs
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import per.goweii.layer.design.cupertino.CupertinoPopoverLayer
+import per.goweii.layer.dialog.ktx.contentView
 
 object ViewPagerContentType {
     const val TYPE_ILLUST_RANK = 1
@@ -60,11 +74,16 @@ interface ViewPagerContainer {
 
 }
 
+class ViewPagerViewModel : ViewModel() {
+    val tabLiveData = MutableLiveData<String>()
+}
+
 class ViewPagerFragment : NavFragment(R.layout.fragment_view_pager), ViewPagerContainer {
 
     private val binding by viewBinding(FragmentViewPagerBinding::bind)
     private val safeArgs: ViewPagerFragmentArgs by navArgs()
     private val viewModel by viewModels<SearchViewModel>()
+    private val viewPagerViewModel by viewModels<ViewPagerViewModel>()
 
     override fun onViewFirstCreated(view: View) {
         super.onViewFirstCreated(view)
@@ -98,6 +117,7 @@ class ViewPagerFragment : NavFragment(R.layout.fragment_view_pager), ViewPagerCo
             binding.clearText.setOnClick {
                 viewModel.tagList.value = listOf()
                 viewModel.word.value = ""
+                viewModel.inputDraft.value = ""
             }
             combineLatest(viewModel.tagList, viewModel.inputDraft).observe(viewLifecycleOwner) {
                 val tags = it?.first ?: listOf()
@@ -119,7 +139,32 @@ class ViewPagerFragment : NavFragment(R.layout.fragment_view_pager), ViewPagerCo
                 true
             }
             binding.tagsFlowView.setOnCellClickListner { cell, index ->
-
+                showActionMenu(cell) {
+                    buildList {
+                        add(Action(getString(R.string.edit)) {
+                            viewModel.tagList.value?.let {
+                                val copied = it.toMutableList()
+                                viewModel.inputDraft.value = copied.getOrNull(index)?.name
+                                copied.removeAt(index)
+                                viewModel.tagList.value = copied
+                                launch {
+                                    delay(30L)
+                                    binding.tagEditer.moveCursorToEnd()
+                                    binding.tagEditer.requestLayout()
+                                    binding.tagEditView.requestLayout()
+                                    showKeyboard(binding.tagEditer)
+                                }
+                            }
+                        })
+                        add(Action(getString(R.string.delete)) {
+                            viewModel.tagList.value?.let {
+                                val copied = it.toMutableList()
+                                copied.removeAt(index)
+                                viewModel.tagList.value = copied
+                            }
+                        })
+                    }
+                }
             }
         } else {
             binding.searchLayout.isVisible = false
@@ -589,9 +634,22 @@ class ViewPagerFragment : NavFragment(R.layout.fragment_view_pager), ViewPagerCo
                         }
                     }
                 }
-                TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-                    tab.text = tagMode[position]
-                }.attach()
+                viewLifecycleOwner.lifecycleScope.launch {
+                    withContext(Dispatchers.IO) {
+                        val illustCount = RoomDB.db().historyDao().getCountByType(HistoryType.ILLUST)
+                        val novelCount = RoomDB.db().historyDao().getCountByType(HistoryType.NOVEL)
+                        val userCount = RoomDB.db().historyDao().getCountByType(HistoryType.USER)
+                        val countArray = arrayOf(illustCount, novelCount, userCount)
+                        withContext(Dispatchers.Main) {
+                            TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+                                tab.text = tagMode[position] + "(${countArray[position]})"
+                                viewPagerViewModel.tabLiveData.observe(viewLifecycleOwner) {
+                                    tab.text = it
+                                }
+                            }.attach()
+                        }
+                    }
+                }
             }
         }
     }

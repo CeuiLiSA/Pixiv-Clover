@@ -1,5 +1,6 @@
 package ceui.lisa.slinky.ui
 
+import androidx.core.view.isVisible
 import androidx.fragment.app.findFragment
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -111,7 +112,11 @@ class CommentViewHolder(aa: ItemCommentBinding) :
                 item.childComments.map {
                     CommentMiniHolder(item.authorId, it, ObjectPool.get(it.user.id))
                 }
-            )
+            ) {
+                binding.childCommentList.isVisible = true
+            }
+        } else {
+            binding.childCommentList.isVisible = false
         }
         binding.replyButton.setOnClick {
             it.findFragmentOrNull<CMFragment>()?.replayToComment(item.comment)

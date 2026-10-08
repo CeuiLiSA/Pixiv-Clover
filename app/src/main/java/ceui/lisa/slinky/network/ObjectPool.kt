@@ -63,4 +63,9 @@ open class LiveDataPool {
             liveData.postValue(obj)
         }
     }
+
+    fun <ObjectT : ModelObject> postUpdate(obj: ObjectT) {
+        val liveData = getInternalRecord(obj.objectUniqueId, obj::class)
+        liveData.postValue(obj)
+    }
 }

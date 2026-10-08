@@ -13,7 +13,6 @@ import ceui.lisa.slinky.models.User
 import ceui.lisa.slinky.network.ObjectPool
 import ceui.lisa.slinky.network.RoomDB
 import ceui.lisa.slinky.network.Util
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -22,15 +21,16 @@ class UserHistoryRepository : CustomRepository<UserHistoryFragment>() {
     override suspend fun suspendRefresh(
         fragment: UserHistoryFragment
     ) {
-        val all = withContext(Dispatchers.IO) {
-            RoomDB.db().historyDao().getAll()
+        val displayList = mutableListOf<SlinkyItem>()
+        withContext(Dispatchers.IO) {
+            RoomDB.db().historyDao().getHistoryByType(HistoryType.USER).forEach { history ->
+                val user = Util.gson.fromJson(history.objectJson, User::class.java)
+                ObjectPool.postUpdate(user)
+                displayList.add(HistoryHolder(user, history))
+            }
         }
         withContext(Dispatchers.Main) {
-            val displayList = all.filter { it.objectType == HistoryType.USER }.onEach { history ->
-                val user = Util.gson.fromJson(history.objectJson, User::class.java)
-                ObjectPool.update(user)
-            }
-            holderList.value = displayList.map { HistoryHolder(it) }
+            holderList.value = displayList
             refreshState.value =
                 LoadState.LOADED(hasContent = displayList.isNotEmpty(), hasNext = false)
         }

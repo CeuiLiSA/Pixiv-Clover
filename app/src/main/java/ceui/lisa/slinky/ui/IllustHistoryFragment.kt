@@ -22,16 +22,14 @@ class IllustHistoryRepository : CustomRepository<IllustHistoryFragment>() {
     override suspend fun suspendRefresh(
         fragment: IllustHistoryFragment
     ) {
-        val all = withContext(Dispatchers.IO) {
-            RoomDB.db().historyDao().getAll()
-        }
-        withContext(Dispatchers.Main) {
-            val displayList = mutableListOf<IllustItem>()
-            all.filter { it.objectType == HistoryType.ILLUST }.onEach { history ->
+        val displayList = mutableListOf<SlinkyItem>()
+        withContext(Dispatchers.IO) {
+            RoomDB.db().historyDao().getHistoryByType(HistoryType.ILLUST).forEach { history ->
                 val illust = Util.gson.fromJson(history.objectJson, Illust::class.java)
-                ObjectPool.updateIllust(illust)
                 displayList.add(IllustItem(illust))
             }
+        }
+        withContext(Dispatchers.Main) {
             holderList.value = displayList
             refreshState.value =
                 LoadState.LOADED(hasContent = displayList.isNotEmpty(), hasNext = false)

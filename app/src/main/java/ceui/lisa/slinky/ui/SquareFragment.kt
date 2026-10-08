@@ -31,7 +31,7 @@ class SquareRepository : CustomRepository<SquareFragment>() {
         ValueContent(coroutineScope) {
             Client.webApi.getSquareContents()
         }.apply {
-            setUpCache(PrefResponseCache(SquareResponse::class.java, prefKeyProducer = { "app-square" }))
+//            setUpCache(PrefResponseCache(SquareResponse::class.java, prefKeyProducer = { "app-square" }))
         }
     }
 
@@ -41,6 +41,28 @@ class SquareRepository : CustomRepository<SquareFragment>() {
         val data = dataset.result.waitForValue(fragment.viewLifecycleOwner)
         val holders = mutableListOf<SlinkyItem>()
         withContext(Dispatchers.IO) {
+            data.body?.page?.follow?.let { followIllusts ->
+                val webIllusts = mutableListOf<WebIllust>()
+                followIllusts.forEach { id ->
+                    data.body.thumbnails?.illust?.firstOrNull { it.id == id }?.let { webIllust ->
+                        webIllusts.add(webIllust)
+                    }
+                }
+                holders.add(RedSectionHeaderHolder("Follow user illusts"))
+                holders.addAll(webIllusts.map { IllustSquareHolder(it) })
+            }
+
+            data.body?.page?.ranking?.let { ranking ->
+                val webIllusts = mutableListOf<WebIllust>()
+                ranking.items?.map { it.id }?.forEach { id ->
+                    data.body.thumbnails?.illust?.firstOrNull { it.id == id }?.let { webIllust ->
+                        webIllusts.add(webIllust)
+                    }
+                }
+                holders.add(RedSectionHeaderHolder("Ranking for ${ranking.date}"))
+                holders.addAll(webIllusts.map { IllustSquareHolder(it) })
+            }
+
             data.body?.page?.recommendByTag?.forEach { tag ->
                 val webIllusts = mutableListOf<WebIllust>()
                 tag.ids?.forEach { id ->
@@ -52,10 +74,11 @@ class SquareRepository : CustomRepository<SquareFragment>() {
                 holders.addAll(webIllusts.map { IllustSquareHolder(it) })
             }
 
-            data.body?.page?.trendingTags?.forEach { tag ->
+            val tags = (data.body?.page?.tags ?: listOf()) + (data.body?.page?.trendingTags ?: listOf())
+            tags.distinctBy { it.tag }.forEach { tag ->
                 val webIllusts = mutableListOf<WebIllust>()
                 tag.ids?.forEach { id ->
-                    data.body.thumbnails?.illust?.firstOrNull { it.id == id }?.let { webIllust ->
+                    data.body?.thumbnails?.illust?.firstOrNull { it.id == id }?.let { webIllust ->
                         webIllusts.add(webIllust)
                     }
                 }

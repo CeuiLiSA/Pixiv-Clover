@@ -22,11 +22,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Date
 
-class HistoryHolder(val history: ViewHistory) : SlinkyItem() {
+class HistoryHolder(val user: User, val history: ViewHistory) : SlinkyItem() {
 
     override fun areItemsTheSame(other: SlinkyItem): Boolean {
-        return history.objectId == (other as? HistoryHolder)?.history?.objectId &&
-                history.objectType == (other as? HistoryHolder)?.history?.objectType
+        return history.objectId == (other as? HistoryHolder)?.history?.objectId
     }
 
     override fun areContentsTheSame(other: SlinkyItem): Boolean {
@@ -46,36 +45,14 @@ class HistoryViewHolder(aa: ItemViewHistoryBinding) :
             it.findActionReceiverOrNull<HistoryAction>()?.showHistory(item.history)
         }
 
-        if (item.history.objectType == HistoryType.ILLUST) {
-            binding.imageView.visibleOrInvisible = true
-            val illust = Util.gson.fromJson(item.history.objectJson, Illust::class.java)
-            binding.historyHint.text = illust.title
+        val user = item.user
 
-            val params = binding.imageView.layoutParams
-            val itemHeight = context.dipToPx(100F)
-            params.width = (itemHeight * illust.width) / illust.height
-            params.height = itemHeight
-            binding.imageView.layoutParams = params
+        binding.historyHint.text = context.getString(R.string.view_user_profile, user.name)
+        Glide.with(context)
+            .load(user.profile_image_urls?.medium?.toGlideUrl())
+            .into(binding.imageView)
 
-            Glide.with(context)
-                .load(illust.image_urls?.medium?.toGlideUrl())
-                .into(binding.imageView)
-        } else if (item.history.objectType == HistoryType.USER) {
-            val user = Util.gson.fromJson(item.history.objectJson, User::class.java)
-            binding.historyHint.text = context.getString(R.string.view_user_profile, user.name)
-            val params = binding.imageView.layoutParams
-            val itemHeight = context.dipToPx(100F)
-            params.width = itemHeight
-            params.height = itemHeight
-            binding.imageView.layoutParams = params
-            binding.imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-            Glide.with(context)
-                .load(user.profile_image_urls?.medium?.toGlideUrl())
-                .into(binding.imageView)
-        } else if (item.history.objectType == HistoryType.NOVEL) {
-            binding.imageView.visibleOrInvisible = false
 
-        }
         binding.viewTime.text = Util.timeFormat.format(Date(item.history.visitTime))
     }
 }

@@ -8,19 +8,12 @@ import ceui.lisa.slinky.core.SlinkyListFragment
 import ceui.lisa.slinky.core.setUpSlinkyList
 import ceui.lisa.slinky.core.slinkyListVM
 import ceui.lisa.slinky.databinding.FragmentSlinkyListBinding
-import ceui.lisa.slinky.db.ViewHistory
 import ceui.lisa.slinky.models.Novel
-import ceui.lisa.slinky.models.User
 import ceui.lisa.slinky.network.ObjectPool
 import ceui.lisa.slinky.network.RoomDB
 import ceui.lisa.slinky.network.Util
-import ceui.lisa.slinky.ui.HistoryAction
-import ceui.lisa.slinky.ui.HistoryHolder
 import ceui.lisa.slinky.ui.HistoryType
 import ceui.lisa.slinky.ui.SlinkyItem
-import ceui.lisa.slinky.ui.UserHistoryFragment
-import ceui.lisa.slinky.ui.UserHistoryRepository
-import ceui.lisa.slinky.ui.onClickUserImpl
 import ceui.lisa.slinky.ui.viewBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -30,17 +23,16 @@ class NovelHistoryRepository : CustomRepository<NovelHistoryFragment>() {
     override suspend fun suspendRefresh(
         fragment: NovelHistoryFragment
     ) {
-        val all = withContext(Dispatchers.IO) {
-            RoomDB.db().historyDao().getAll()
-        }
-        val holders = mutableListOf<SlinkyItem>()
-        withContext(Dispatchers.Main) {
-            val displayList = all.filter { it.objectType == HistoryType.NOVEL }.onEach { history ->
+        val displayList = mutableListOf<SlinkyItem>()
+        withContext(Dispatchers.IO) {
+            RoomDB.db().historyDao().getHistoryByType(HistoryType.NOVEL).forEach { history ->
                 val novel = Util.gson.fromJson(history.objectJson, Novel::class.java)
-                ObjectPool.update(novel)
-                holders.add(NovelHolder(novel))
+                ObjectPool.postUpdate(novel)
+                displayList.add(NovelHolder(novel))
             }
-            holderList.value = holders
+        }
+        withContext(Dispatchers.Main) {
+            holderList.value = displayList
             refreshState.value =
                 LoadState.LOADED(hasContent = displayList.isNotEmpty(), hasNext = false)
         }

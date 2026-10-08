@@ -16,7 +16,6 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import ceui.lisa.annotations.ItemHolder
 import ceui.lisa.slinky.R
 import ceui.lisa.slinky.core.LoadState
-import ceui.lisa.slinky.core.PrefResponseCache
 import ceui.lisa.slinky.core.setUpLoadingState
 import ceui.lisa.slinky.databinding.FragmentArticlePreviewBinding
 import ceui.lisa.slinky.databinding.ItemPixivisionViewPagerBinding
@@ -25,18 +24,13 @@ import ceui.lisa.slinky.dipToPxF
 import ceui.lisa.slinky.glide.GlideApp
 import ceui.lisa.slinky.models.Article
 import ceui.lisa.slinky.models.ArticlesResponse
-import ceui.lisa.slinky.network.Client
 import ceui.lisa.slinky.network.ObjectPool
 import ceui.lisa.slinky.styles.ScaleInTransformer
 import ceui.lisa.slinky.utils.DrawableUtils
 import ceui.lisa.slinky.utils.openWebPageInApp
 import ceui.lisa.slinky.utils.toGlideUrl
-import com.bumptech.glide.load.MultiTransformation
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 
-class PixivisionHolder(val fragment: NavFragment, val valueContent: ValueContent<ArticlesResponse>) :
+class PixivisionHolder(val parentFragment: NavFragment, val valueContent: ValueContent<ArticlesResponse>) :
     SlinkyItem() {
 
     val loadState: LiveData<LoadState> = valueContent.loadState
@@ -67,7 +61,7 @@ class PixivisionViewHolder(aa: ItemPixivisionViewPagerBinding) :
             composite.addTransformer(ScaleInTransformer(0.85F))
             binding.viewPager.setPageTransformer(composite)
             item.items.observe(lifecycleOwner) { articles ->
-                binding.viewPager.adapter = object : FragmentStateAdapter(item.fragment) {
+                binding.viewPager.adapter = object : FragmentStateAdapter(item.parentFragment) {
                     override fun getItemCount(): Int {
                         return Int.MAX_VALUE
                     }

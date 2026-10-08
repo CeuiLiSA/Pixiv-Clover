@@ -7,8 +7,6 @@ import ceui.lisa.annotations.ItemHolder
 import ceui.lisa.slinky.R
 import ceui.lisa.slinky.core.PixivListRepository
 import ceui.lisa.slinky.databinding.CellSeriesItemBinding
-import ceui.lisa.slinky.models.Illust
-import ceui.lisa.slinky.models.IllustSeries
 import ceui.lisa.slinky.models.Novel
 import ceui.lisa.slinky.models.NovelSeries
 import ceui.lisa.slinky.network.Client
@@ -16,12 +14,9 @@ import ceui.lisa.slinky.network.ObjectPool
 import ceui.lisa.slinky.ui.IllustSeriesFragment
 import ceui.lisa.slinky.ui.NavFragment
 import ceui.lisa.slinky.ui.SeriesDescHolder
-import ceui.lisa.slinky.ui.SeriesHolder
 import ceui.lisa.slinky.ui.SlinkyItem
 import ceui.lisa.slinky.ui.SlinkyViewHolder
 import ceui.lisa.slinky.ui.findFragmentOrNull
-import ceui.lisa.slinky.ui.onClickIllustImpl
-import ceui.lisa.slinky.ui.onClickNovelImpl
 import ceui.lisa.slinky.ui.pxValue
 import ceui.lisa.slinky.ui.setOnClick
 import ceui.lisa.slinky.utils.toGlideUrl

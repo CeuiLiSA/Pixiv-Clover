@@ -169,7 +169,7 @@ class UserProfileRepository(
                 headerHolders.add(
                     LoadingHolder(
                         userCreatedIllustFetcher.refreshState,
-                        refreshBlock = { loadCreatedIllustsBlock.invoke(RefreshHint.errorRetry()) })
+                        refreshBlock = { loadCreatedIllustsBlock.invoke(RefreshHint.retry()) })
                 )
                 loadCreatedIllustsBlock.invoke(RefreshHint.initialLoad())
                 holderList.value = headerHolders

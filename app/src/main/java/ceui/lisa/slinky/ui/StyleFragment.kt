@@ -15,6 +15,7 @@ import ceui.lisa.slinky.list.ItemFragment
 import ceui.lisa.slinky.models.IllustSeriesDetail
 import ceui.lisa.slinky.models.ObjectType
 import ceui.lisa.slinky.network.ObjectPool
+import ceui.lisa.slinky.utils.loadMedia
 import ceui.lisa.slinky.utils.toGlideUrl
 import com.blankj.utilcode.util.BarUtils
 import com.bumptech.glide.Glide
@@ -29,12 +30,12 @@ class StyleFragment : NavFragment(R.layout.fragment_tab_common_list) {
 
         if (safeArgs.objectType == ObjectType.NOVEL) {
             ObjectPool.get<IllustSeriesDetail>(safeArgs.seriesId).observe(viewLifecycleOwner) { detail ->
-                Glide.with(this).load(detail.url?.toGlideUrl()).into(binding.headerImage)
+                binding.headerImage.loadMedia(detail.url)
                 actionbarContent.title.value = detail?.title
             }
         } else {
             ObjectPool.get<IllustSeriesDetail>(safeArgs.seriesId).observe(viewLifecycleOwner) { detail ->
-                Glide.with(this).load(detail.cover_image_urls?.medium?.toGlideUrl()).into(binding.headerImage)
+                binding.headerImage.loadMedia(detail.cover_image_urls?.medium)
                 actionbarContent.title.value = detail?.title
             }
         }

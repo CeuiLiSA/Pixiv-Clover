@@ -33,31 +33,9 @@
             android:visibility="gone"
             app:rRadius="20dp"
             android:id="@+id/screenshot"
-            android:visibility="gone"
             android:scaleType="fitCenter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
-        <LinearLayout
-            android:visibility="gone"
-            android:layout_gravity="center"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/open"
-                android:text="open"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <Button
-                android:id="@+id/close"
-                android:text="close"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
 
     </FrameLayout>
 </layout>

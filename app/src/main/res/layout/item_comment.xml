@@ -30,7 +30,7 @@
                 android:id="@+id/comment_text"
                 android:stateListAnimator="@animator/button_press_alpha"
                 android:layout_width="match_parent"
-                android:layout_marginStart="75dp"
+                android:layout_marginStart="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:textColor="@color/white"
@@ -39,11 +39,11 @@
 
             <ImageView
                 android:id="@+id/comment_image"
-                android:layout_width="80dp"
-                android:layout_marginStart="75dp"
+                android:layout_width="100dp"
+                android:layout_marginStart="72dp"
                 android:background="@drawable/image_place_holder"
                 android:scaleType="centerCrop"
-                android:layout_height="80dp"
+                android:layout_height="100dp"
                 android:layout_marginTop="6dp">
 
             </ImageView>
@@ -54,7 +54,7 @@
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:layout_marginStart="75dp"
+                android:layout_marginStart="72dp"
                 android:layout_marginTop="6dp"
                 app:ptb_progress_stroke_width="3dp"
                 app:ptb_progress_width="15dp"
@@ -72,7 +72,7 @@
                 android:layout_marginBottom="6dp"
                 android:layout_marginTop="4dp"
                 android:gravity="center_vertical"
-                android:layout_marginStart="75dp"
+                android:layout_marginStart="72dp"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -100,7 +100,6 @@
                 android:id="@+id/child_comment_list"
                 android:layout_width="match_parent"
                 android:background="@drawable/round_corner_white20_r4"
-                visibleOrGone="@{holder.childComments.size() > 0}"
                 android:layout_marginStart="62dp"
                 android:visibility="gone"
                 android:nestedScrollingEnabled="true"

@@ -9,47 +9,21 @@ import ceui.lisa.slinky.R
 import ceui.lisa.slinky.databinding.DeletedFrameLayoutBinding
 import ceui.lisa.slinky.databinding.ItemLoadingBinding
 import ceui.lisa.slinky.getHumanReadableMessage
-import ceui.lisa.slinky.models.Novel
-import ceui.lisa.slinky.models.ObjectType
-import ceui.lisa.slinky.models.WebIllust
-import ceui.lisa.slinky.network.ObjectPool
 import ceui.lisa.slinky.styles.WaterMark
-import ceui.lisa.slinky.ui.IllustSeriesFragmentArgs
 import ceui.lisa.slinky.ui.NavFragment
-import ceui.lisa.slinky.ui.NovelAction
-import ceui.lisa.slinky.ui.NovelSeriesAction
-import ceui.lisa.slinky.ui.StyleFragmentArgs
-import ceui.lisa.slinky.ui.WebIllustAction
-import ceui.lisa.slinky.ui.novel.NovelTextFragmentArgs
-import ceui.lisa.slinky.ui.onClickIllustImpl
-import ceui.lisa.slinky.ui.onClickNovelImpl
 import ceui.lisa.slinky.ui.performBack
 import ceui.lisa.slinky.ui.setOnClick
 import ceui.lisa.slinky.ui.setUpLinearlayoutManager
 import com.scwang.smart.refresh.header.FalsifyFooter
 import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
-import timber.log.Timber
 
 abstract class SlinkyListFragment(layoutId: Int = R.layout.fragment_slinky_list) :
-    NavFragment(layoutId), NovelAction, NovelSeriesAction, WebIllustAction {
+    NavFragment(layoutId) {
 
-    override fun onClickWebIllust(webIllust: WebIllust) {
-        val illust = webIllust.toIllust()
-        ObjectPool.updateIllust(illust)
-        onClickIllustImpl(illust)
-    }
 
     open fun isDefaultLayoutManager(): Boolean {
         return true
-    }
-
-    override fun onClickNovel(novel: Novel) {
-        onClickNovelImpl(novel)
-    }
-
-    override fun onClickNovelSeries(seriesId: Long) {
-        pushFragment(R.id.navigation_style_fragment, StyleFragmentArgs(seriesId, ObjectType.NOVEL).toBundle())
     }
 }
 
@@ -78,7 +52,7 @@ inline fun <reified FragmentT : SlinkyListFragment> FragmentT.setUpSlinkyList(
         refreshBlock = { viewModel.refresh(RefreshHint.pullToRefresh(), this) },
         viewModel.loadMoreState,
         loadMoreBlock = { viewModel.loadMore(this) },
-        retryBlock = { viewModel.refresh(RefreshHint.errorRetry(), this) },
+        retryBlock = { viewModel.refresh(RefreshHint.retry(), this) },
     )
     viewModel.attachFragment(this)
 }
@@ -130,7 +104,7 @@ fun ItemLoadingBinding.setUpRefreshState(
                 if (state.refreshHint?.cause == RefreshHint.Cause.PULL_TO_REFRESH) {
                     loadingFrame.isVisible = false
                     progressCircular.showProgress(false)
-                } else if (state.refreshHint?.cause == RefreshHint.Cause.INITIAL_LOAD) {
+                } else if (state.refreshHint?.cause == RefreshHint.Cause.INITIAL_LOAD || state.refreshHint?.cause == RefreshHint.Cause.RETRY) {
                     loadingFrame.isVisible = true
                     progressCircular.showProgress(true)
                 }

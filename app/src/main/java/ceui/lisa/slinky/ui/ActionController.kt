@@ -42,9 +42,9 @@ fun NavFragment.followUserImpl(button: ProgressTextButton, user: User, bookmarkT
                 ObjectPool.update(updated)
                 visitUser(updated)
                 if (bookmarkType == BookmarkType.PRIVATE) {
-                    showPush(title = getString(R.string.follow_success_hint_private))
+                    showPush(title = getString(R.string.follow_success_hint_private), user.name)
                 } else {
-                    showPush(title = getString(R.string.follow_success_hint))
+                    showPush(title = getString(R.string.follow_success_hint), user.name)
                 }
             } catch (ex: Exception) {
                 handleError(ex)
@@ -64,7 +64,7 @@ fun NavFragment.unfollowUserImpl(button: ProgressTextButton, user: User) {
                 val updated = user.copy(is_followed = false)
                 ObjectPool.update(updated)
                 visitUser(updated)
-                showPush(title = getString(R.string.unfollow_success_hint))
+                showPush(title = getString(R.string.unfollow_success_hint), user.name)
             }
         } catch (ex: Exception) {
             handleError(ex)
@@ -125,9 +125,9 @@ fun NavFragment.addBookmarkIllustImpl(
             ObjectPool.update(updated)
             visitIllust(updated)
             if (bookmarkType == BookmarkType.PRIVATE) {
-                showPush(title = getString(R.string.add_bookmark_success_hint_private))
+                showPush(title = getString(R.string.add_bookmark_success_hint_private), illust.title)
             } else {
-                showPush(title = getString(R.string.add_bookmark_success_hint))
+                showPush(title = getString(R.string.add_bookmark_success_hint), illust.title)
             }
         } catch (ex: Exception) {
             handleError(ex)
@@ -146,7 +146,7 @@ fun NavFragment.removeBookmarkIllustImpl(button: ProgressImageButton, illust: Il
                 val updated = illust.copy(is_bookmarked = false)
                 ObjectPool.update(updated)
                 visitIllust(updated)
-                showPush(title = getString(R.string.remove_bookmark_success_hint))
+                showPush(title = getString(R.string.remove_bookmark_success_hint), illust.title)
             }
         } catch (ex: Exception) {
             handleError(ex)
@@ -169,9 +169,9 @@ fun NavFragment.addBookmarkNovelImpl(
             ObjectPool.update(updated)
             visitNovel(updated)
             if (bookmarkType == BookmarkType.PRIVATE) {
-                showPush(title = getString(R.string.add_bookmark_success_hint_private))
+                showPush(title = getString(R.string.add_bookmark_success_hint_private), novel.title)
             } else {
-                showPush(title = getString(R.string.add_bookmark_success_hint))
+                showPush(title = getString(R.string.add_bookmark_success_hint), novel.title)
             }
         } catch (ex: Exception) {
             handleError(ex)
@@ -190,7 +190,7 @@ fun NavFragment.removeBookmarkNovelImpl(button: ProgressImageButton, novel: Nove
                 val updated = novel.copy(is_bookmarked = false)
                 ObjectPool.update(updated)
                 visitNovel(updated)
-                showPush(title = getString(R.string.remove_bookmark_success_hint))
+                showPush(title = getString(R.string.remove_bookmark_success_hint), novel.title)
             }
         } catch (ex: Exception) {
             handleError(ex)
@@ -200,24 +200,6 @@ fun NavFragment.removeBookmarkNovelImpl(button: ProgressImageButton, novel: Nove
     }
 }
 
-fun NavFragment.onLongClickIllustImpl(illust: Illust) {
-    pushFragment(
-        R.id.imageViewPagerFragment,
-        OriginalImageViewPagerFragmentArgs(illust.id, 0).toBundle(),
-    )
-}
-
-fun NavFragment.onClickIllustImpl(illust: Illust) {
-    pushFragment(R.id.illustFragment, IllustFragmentArgs(illust.id).toBundle())
-}
-
-fun NavFragment.onClickUserImpl(user: User) {
-    pushFragment(R.id.userFragment, UserFragmentArgs(user.id).toBundle())
-}
-
-fun NavFragment.onClickNovelImpl(novel: Novel) {
-    pushFragment(R.id.navigation_novel_text_fragment, NovelTextFragmentArgs(novelId = novel.id).toBundle())
-}
 
 fun NavFragment.launch(block: suspend () -> Unit) {
     launchSuspend {

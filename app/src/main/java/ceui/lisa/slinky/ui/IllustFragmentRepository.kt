@@ -260,7 +260,7 @@ class IllustFragmentRepository(
             mutableHolders.add(
                 LoadingHolder(
                     relatedIllustRepository.refreshState,
-                    refreshBlock = { loadRelatedIllustsBlock.invoke(RefreshHint.errorRetry()) }
+                    refreshBlock = { loadRelatedIllustsBlock.invoke(RefreshHint.retry()) }
                 )
             )
             loadRelatedIllustsBlock.invoke(RefreshHint.initialLoad())

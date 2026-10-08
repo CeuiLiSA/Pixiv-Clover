@@ -22,6 +22,45 @@ fun ImageView.binding_srcValue(srcRes: Int?) {
     }
 }
 
+fun ImageView.loadMedia(url: String?) {
+    val self = this
+    if (url != null) {
+        val glideUrl = url.toGlideUrl()
+
+        val existing = self.getTag(R.id.image_view_load_media_resource) as? GlideUrl
+        if (existing?.toStringUrl() == glideUrl.toStringUrl()) {
+            Timber.d("old: ${existing}, new: ${glideUrl}")
+            return
+        }
+
+        Glide.with(context)
+            .load(glideUrl)
+            .addListener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    self.setTag(R.id.image_view_load_media_resource, null)
+                    return false
+                }
+
+                override fun onResourceReady(
+                    resource: Drawable,
+                    model: Any,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    self.setTag(R.id.image_view_load_media_resource, glideUrl)
+                    return false
+                }
+            })
+            .into(this)
+    }
+}
+
 @BindingAdapter("loadUserHead")
 fun ImageView.binding_loadUserHead(user: User?) {
     val self = this
