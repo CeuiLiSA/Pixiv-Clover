@@ -120,7 +120,7 @@ class CMFragment : SlinkyListFragment(R.layout.fragment_comment_list),
 fun Context.showKeyboard(editText: EditText?) {
     val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
     editText?.requestFocus()
-    imm?.showSoftInput(editText, InputMethodManager.HIDE_IMPLICIT_ONLY)
+    imm?.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
 //    imm?.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_IMPLICIT_ONLY)
 }
 

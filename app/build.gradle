@@ -2,29 +2,49 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-kapt")
-    id("com.google.devtools.ksp")
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
 }
 
+def signingPropertiesFile = rootProject.file("keystore.properties")
+def signingProperties = new Properties()
+if (signingPropertiesFile.exists()) {
+    signingPropertiesFile.withInputStream { signingProperties.load(it) }
+}
+
 android {
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
         applicationId "ceui.lisa.slinky"
         minSdk 23
-        targetSdk 34
+        targetSdk 36
 
         def gitVersionCode = 'git rev-list HEAD --count'.execute().text.trim()
-        versionCode Integer.parseInt(gitVersionCode)
+        // Offset keeps codes above builds previously published from the Slinky repository.
+        versionCode 10000 + Integer.parseInt(gitVersionCode)
         versionName "0.1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        if (signingPropertiesFile.exists()) {
+            release {
+                storeFile rootProject.file(signingProperties.getProperty("storeFile"))
+                storePassword signingProperties.getProperty("storePassword")
+                keyAlias signingProperties.getProperty("keyAlias")
+                keyPassword signingProperties.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
+            if (signingPropertiesFile.exists()) {
+                signingConfig signingConfigs.release
+            }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -34,6 +54,7 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     buildFeatures {
+        buildConfig true
         dataBinding true
         viewBinding true
     }
@@ -53,6 +74,7 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.13.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.activity:activity-ktx:1.9.3'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
@@ -64,7 +86,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
 
-    implementation 'com.tencent:mmkv-static:1.2.12'
+    // LTS release with 16 KB page support, including 32-bit Android devices.
+    implementation 'com.tencent:mmkv-static:1.3.14'
 
     def kotlinx_coroutines_version = "1.8.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version"
@@ -85,7 +108,7 @@ dependencies {
     implementation 'com.blankj:utilcodex:1.31.1'
 
 
-    def room_version = "2.6.1"
+    def room_version = "2.7.2"
 
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
@@ -109,14 +132,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
-    implementation 'com.github.yalantis:ucrop:2.2.6'
+    implementation 'com.github.yalantis:ucrop:2.2.11'
 
     implementation("io.github.panpf.zoomimage:zoomimage-view-sketch:1.0.2")
 
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     implementation 'jp.wasabeef:glide-transformations:4.3.0'
-
-    implementation 'com.gitee.zackratos:UltimateBarX:0.8.1'
 
     implementation 'com.airbnb.android:lottie:4.2.2'
 
@@ -145,4 +166,6 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:3.14.9'
+    androidTestImplementation 'com.squareup.okhttp3:okhttp-tls:3.14.9'
 }

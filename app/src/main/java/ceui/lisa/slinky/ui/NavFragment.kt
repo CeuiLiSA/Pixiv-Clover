@@ -14,6 +14,7 @@ import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.ComponentDialog
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.databinding.DataBindingUtil
@@ -282,7 +283,8 @@ fun Fragment.action(todo: suspend () -> Unit) {
 fun Fragment.performBack() {
     val bottomSheet = findAncestorOrSelf<DialogFragment>()
     if (bottomSheet != null) {
-        bottomSheet.dialog?.onBackPressed()
+        (bottomSheet.dialog as? ComponentDialog)?.onBackPressedDispatcher?.onBackPressed()
+            ?: bottomSheet.dismiss()
     } else {
         findNavController().popBackStack()
     }

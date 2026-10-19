@@ -26,7 +26,7 @@ object DownloadTaskManager {
                 ex.printStackTrace()
                 false
             }
-            currentTaskList.removeFirst()
+            currentTaskList.removeAt(0)
             if (isSuccess) {
                 task.state.value = TaskState.Finished
                 delay(200L)

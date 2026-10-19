@@ -45,7 +45,8 @@ class WebViewFragment : CacheViewFragment(R.layout.fragment_web_view) {
                 handler: SslErrorHandler?,
                 error: SslError?
             ) {
-                handler?.proceed()
+                // Never load a page whose TLS certificate failed validation.
+                handler?.cancel()
             }
 
             override fun shouldOverrideUrlLoading(

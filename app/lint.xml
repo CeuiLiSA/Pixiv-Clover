@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <!-- NotificationUtils is bundled by utilcodex; the app does not post system notifications. -->
+    <issue id="NotificationPermission">
+        <ignore path="src/main/AndroidManifest.xml" />
+    </issue>
+</lint>

@@ -56,7 +56,7 @@ class IllustFragmentRepository(
             displayList: List<Illust>
         ) {
             val items = rootRepository.toMutableList()
-            items.removeLast()
+            items.removeAt(items.lastIndex)
             items.addAll(displayList.map {
                 PostItem(it)
             })

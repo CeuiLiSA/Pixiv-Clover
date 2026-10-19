@@ -7,6 +7,7 @@
     <application
         android:name=".Slinky"
         android:allowBackup="true"
+        android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
@@ -26,7 +27,7 @@
             android:name=".OutWakeActivity"
             android:exported="true"
             android:label="@string/log_in_by_slinky">
-            <intent-filter android:autoVerify="true">
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />

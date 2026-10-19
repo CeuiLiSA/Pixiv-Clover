@@ -19,7 +19,11 @@ import android.view.animation.RotateAnimation
 import android.view.animation.TranslateAnimation
 import android.widget.EditText
 import androidx.activity.viewModels
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -39,8 +43,6 @@ import ceui.lisa.slinky.utils.openWebPageWithSystemBrowser
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.ClipboardUtils
 import com.blankj.utilcode.util.KeyboardUtils
-import com.zackratos.ultimatebarx.ultimatebarx.navigationBar
-import com.zackratos.ultimatebarx.ultimatebarx.statusBar
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
@@ -256,15 +258,23 @@ open class FullScreenActivity : AppCompatActivity() {
     private val viewModel: TouchScreenViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        window.setFlags(
-//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-//        )
         super.onCreate(savedInstanceState)
-//        WindowCompat.setDecorFitsSystemWindows(window, false)
+        enableEdgeToEdge()
+    }
 
-        statusBar { transparent() }
-        navigationBar { transparent() }
+    override fun onContentChanged() {
+        super.onContentChanged()
+        // Vertical insets are handled by InsetLayout; protect landscape controls
+        // from side navigation bars and display cutouts once at the activity root.
+        val content = findViewById<View>(android.R.id.content)
+        ViewCompat.setOnApplyWindowInsetsListener(content) { view, insets ->
+            val safeInsets = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
+            )
+            view.updatePadding(left = safeInsets.left, right = safeInsets.right)
+            insets
+        }
+        ViewCompat.requestApplyInsets(content)
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
