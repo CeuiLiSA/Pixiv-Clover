@@ -24,7 +24,7 @@ android {
         def gitVersionCode = 'git rev-list HEAD --count'.execute().text.trim()
         // Offset keeps codes above builds previously published from the Slinky repository.
         versionCode 10000 + Integer.parseInt(gitVersionCode)
-        versionName "0.1.0"
+        versionName "0.2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
