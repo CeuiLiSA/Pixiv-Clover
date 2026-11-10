@@ -410,6 +410,11 @@
         android:name="ceui.lisa.slinky.ui.AISettingsFragment"
         android:label="AISettingsFragment" />
 
+    <fragment
+        android:id="@+id/muteManagementFragment"
+        android:name="ceui.lisa.slinky.mute.MuteManagementFragment"
+        android:label="MuteManagementFragment" />
+
 
 
     <fragment

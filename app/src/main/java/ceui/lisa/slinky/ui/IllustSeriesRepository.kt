@@ -16,6 +16,7 @@ import ceui.lisa.slinky.models.User
 import ceui.lisa.slinky.network.Client
 import ceui.lisa.slinky.network.ObjectPool
 import ceui.lisa.slinky.utils.toGlideUrl
+import ceui.lisa.slinky.mute.MuteRule
 import com.bumptech.glide.Glide
 import kotlin.math.roundToInt
 
@@ -28,7 +29,8 @@ class IllustSeriesRepository(
         seriesDetail.value = resp
         resp
     },
-    dataMapper = { illust -> SeriesHolder(illust, 0, 0) }
+    dataMapper = { illust -> SeriesHolder(illust, 0, 0) },
+    muteRule = MuteRule.Disabled,
 ) {
     override suspend fun applyRefreshData(
         fragment: IllustSeriesFragment,

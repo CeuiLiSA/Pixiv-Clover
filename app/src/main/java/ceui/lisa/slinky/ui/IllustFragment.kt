@@ -38,6 +38,8 @@ import ceui.lisa.slinky.models.Illust
 import ceui.lisa.slinky.models.IllustResponse
 import ceui.lisa.slinky.models.ObjectType
 import ceui.lisa.slinky.models.User
+import ceui.lisa.slinky.mute.showIllustMuteMenu
+import ceui.lisa.slinky.mute.toggleTagMute
 import ceui.lisa.slinky.network.Client
 import ceui.lisa.slinky.network.ObjectPool
 import ceui.lisa.slinky.ui.dialog.BottomDialog
@@ -50,7 +52,7 @@ import timber.log.Timber
 
 
 class IllustFragment : SlinkyListFragment(R.layout.fragment_illust),
-    PostAction, TagAction, ShowImageViewPager, SeeMoreAction {
+    PostAction, TagAction, TagLongClickAction, ShowImageViewPager, SeeMoreAction {
 
     private val safeArgs: IllustFragmentArgs by navArgs()
     private val binding by viewBinding(FragmentIllustBinding::bind)
@@ -96,6 +98,9 @@ class IllustFragment : SlinkyListFragment(R.layout.fragment_illust),
                                     R.id.commentListFragmentV2,
                                     CMFragmentArgs(illust.id, illust.user.id).toBundle()
                                 )
+                            },
+                            ActionItem(R.drawable.ic_more) { sender ->
+                                showIllustMuteMenu(sender, illust)
                             }
                         )
                     } else {
@@ -121,6 +126,9 @@ class IllustFragment : SlinkyListFragment(R.layout.fragment_illust),
                                     R.id.commentListFragmentV2,
                                     CMFragmentArgs(illust.id, illust.user.id).toBundle()
                                 )
+                            },
+                            ActionItem(R.drawable.ic_more) { sender ->
+                                showIllustMuteMenu(sender, illust)
                             }
                         )
                     }
@@ -154,6 +162,10 @@ class IllustFragment : SlinkyListFragment(R.layout.fragment_illust),
 
     override fun searchTag(name: String) {
         searchTagImpl(name, false)
+    }
+
+    override fun onLongClickTag(name: String) {
+        toggleTagMute(name)
     }
 
     override fun showImageViewPager(illustId: Long, index: Int) {

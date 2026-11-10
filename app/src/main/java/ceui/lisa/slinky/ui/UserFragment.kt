@@ -20,7 +20,12 @@ import ceui.lisa.slinky.models.IllustResponse
 import ceui.lisa.slinky.models.ObjectType
 import ceui.lisa.slinky.models.User
 import ceui.lisa.slinky.network.Client
+import ceui.lisa.slinky.mute.MuteStore
+import ceui.lisa.slinky.mute.toggleUserMute
 import ceui.lisa.slinky.network.ObjectPool
+import ceui.lisa.slinky.requireLoggedInUserId
+import ceui.lisa.slinky.ui.dialog.Action
+import ceui.lisa.slinky.ui.dialog.showActionMenu
 import ceui.lisa.slinky.ui.novel.UserCreatedNovelFragmentArgs
 import kotlinx.coroutines.delay
 
@@ -57,11 +62,8 @@ class UserFragment : SlinkyListFragment(), PostAction,
         }
 
         actionbarContent.endItems.value = listOf(
-            ActionItem(R.drawable.ic_more) {
-                pushFragment(
-                    R.id.userListFragment,
-                    UserListFragmentArgs(type = UserListType.RELATED, safeArgs.userId).toBundle()
-                )
+            ActionItem(R.drawable.ic_more) { sender ->
+                showMoreMenu(sender)
             }
         )
 
@@ -90,6 +92,31 @@ class UserFragment : SlinkyListFragment(), PostAction,
         })
         ObjectPool.get<User>(safeArgs.userId).value?.let {
             visitUser(user = it)
+        }
+    }
+
+    private fun showMoreMenu(sender: View) {
+        launch {
+            MuteStore.awaitLoaded()
+            val user = ObjectPool.get<User>(safeArgs.userId).value
+            showActionMenu(sender) {
+                buildList {
+                    add(Action(getString(R.string.related_user)) {
+                        pushFragment(
+                            R.id.userListFragment,
+                            UserListFragmentArgs(type = UserListType.RELATED, safeArgs.userId).toBundle()
+                        )
+                    })
+                    if (user != null && user.id.exist() && user.id != requireLoggedInUserId()) {
+                        val label = if (MuteStore.isUserMuted(user.id)) {
+                            R.string.unmute_user
+                        } else {
+                            R.string.mute_user
+                        }
+                        add(Action(getString(label)) { toggleUserMute(user) })
+                    }
+                }
+            }
         }
     }
 

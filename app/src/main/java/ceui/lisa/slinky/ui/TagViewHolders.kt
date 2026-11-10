@@ -29,6 +29,11 @@ class TagsViewHolder(aa: ItemTagsBinding) :
                 }
             }
         }
+        binding.tagsFlowView.setOnCellLongClickListener { cell, index ->
+            item.tagList.getOrNull(index)?.name?.let { name ->
+                cell.findActionReceiverOrNull<TagLongClickAction>()?.onLongClickTag(name)
+            }
+        }
         binding.tagsFlowView.setTags(item.tagList)
     }
 }

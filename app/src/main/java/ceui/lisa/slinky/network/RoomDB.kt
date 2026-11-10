@@ -3,6 +3,7 @@ package ceui.lisa.slinky.network
 import android.content.Context
 import androidx.room.Room
 import ceui.lisa.slinky.db.AppDatabase
+import ceui.lisa.slinky.db.MIGRATION_1_2
 
 object RoomDB {
 
@@ -12,7 +13,7 @@ object RoomDB {
         database = Room.databaseBuilder(
             context,
             AppDatabase::class.java, "slinky-db"
-        ).build()
+        ).addMigrations(MIGRATION_1_2).build()
     }
 
     fun db(): AppDatabase {

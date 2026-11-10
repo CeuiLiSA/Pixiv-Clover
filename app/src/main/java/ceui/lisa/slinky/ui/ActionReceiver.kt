@@ -39,6 +39,11 @@ interface TagAction {
     fun searchTag(name: String)
 }
 
+interface TagLongClickAction {
+
+    fun onLongClickTag(name: String)
+}
+
 interface DownloadIllustAction {
 
     fun download(index: Int)

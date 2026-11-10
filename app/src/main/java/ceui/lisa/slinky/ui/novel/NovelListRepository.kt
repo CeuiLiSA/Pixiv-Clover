@@ -7,6 +7,8 @@ import ceui.lisa.slinky.R
 import ceui.lisa.slinky.core.PixivListRepository
 import ceui.lisa.slinky.databinding.ItemNovelBinding
 import ceui.lisa.slinky.models.Novel
+import ceui.lisa.slinky.mute.MuteRule
+import ceui.lisa.slinky.mute.MuteSubjectItem
 import ceui.lisa.slinky.network.ObjectPool
 import ceui.lisa.slinky.network.paging.ListShow
 import ceui.lisa.slinky.ui.NavFragment
@@ -22,13 +24,17 @@ import ceui.lisa.slinky.utils.toGlideUrl
 import com.bumptech.glide.Glide
 
 class NovelListRepository<FragmentT : NavFragment>(
+    muteRule: MuteRule = MuteRule.Default,
     loader: suspend () -> ListShow<Novel>,
 ) : PixivListRepository<Novel, FragmentT>(
     loader = loader,
-    dataMapper = { NovelHolder(it) }
+    dataMapper = { NovelHolder(it) },
+    muteRule = muteRule,
 )
 
-class NovelHolder(val novel: Novel) : SlinkyItem() {
+class NovelHolder(val novel: Novel) : SlinkyItem(), MuteSubjectItem {
+
+    override val muteSubject: Any get() = novel
 
 
     override fun areItemsTheSame(other: SlinkyItem): Boolean {

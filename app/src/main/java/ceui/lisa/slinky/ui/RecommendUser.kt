@@ -24,6 +24,7 @@ import ceui.lisa.slinky.glide.GlideApp
 import ceui.lisa.slinky.models.TrendingTag
 import ceui.lisa.slinky.models.UserPreview
 import ceui.lisa.slinky.models.UserPreviewResponse
+import ceui.lisa.slinky.mute.MuteStore
 import ceui.lisa.slinky.network.ObjectPool
 import ceui.lisa.slinky.styles.ProgressImageButton
 import ceui.lisa.slinky.utils.toGlideUrl
@@ -67,7 +68,9 @@ class UserHorizontalViewHolder(aa: ItemUserHorizontalBinding) :
 class RecommendUserHolder(val valueContent: ValueContent<UserPreviewResponse>) : SlinkyItem() {
 
     val loadState: LiveData<LoadState> = valueContent.loadState
-    val items: LiveData<List<UserPreview>> = valueContent.result.map { it.user_previews }
+    val items: LiveData<List<UserPreview>> = valueContent.result.map { resp ->
+        resp.user_previews.filterNot { MuteStore.isUserMuted(it.user?.id) }
+    }
 
 }
 

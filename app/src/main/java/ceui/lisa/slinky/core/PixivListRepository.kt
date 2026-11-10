@@ -7,6 +7,9 @@ import ceui.lisa.slinky.models.Illust
 import ceui.lisa.slinky.models.ModelObject
 import ceui.lisa.slinky.models.TrendingTag
 import ceui.lisa.slinky.models.UserPreview
+import ceui.lisa.slinky.mute.MuteRule
+import ceui.lisa.slinky.mute.MuteStore
+import ceui.lisa.slinky.mute.MuteSubjectItem
 import ceui.lisa.slinky.network.Client
 import ceui.lisa.slinky.network.ObjectPool
 import ceui.lisa.slinky.network.Util
@@ -15,11 +18,13 @@ import ceui.lisa.slinky.ui.NavFragment
 import ceui.lisa.slinky.ui.SlinkyItem
 import com.airbnb.lottie.utils.Utils
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 open class PixivListRepository<ModelT, FragmentT : NavFragment>(
     val loader: suspend () -> ListShow<ModelT>,
     val dataMapper: ((ModelT) -> SlinkyItem),
+    private val muteRule: MuteRule = MuteRule.Default,
 ) : Repository<FragmentT>() {
 
     private val _nextUrl = MutableLiveData<String?>()
@@ -39,7 +44,7 @@ open class PixivListRepository<ModelT, FragmentT : NavFragment>(
         fragment: FragmentT
     ) {
         val resp = requestImpl()
-        val displayList = resp.displayList
+        val displayList = visibleItems(resp.displayList)
         val hasNext = resp.nextPageUrl != null
         if (displayList.isNotEmpty()) {
             applyRefreshData(fragment, displayList)
@@ -55,16 +60,47 @@ open class PixivListRepository<ModelT, FragmentT : NavFragment>(
         val nextUrl = _nextUrl.value
         if (nextUrl?.isNotEmpty() == true) {
             val resp = requestImpl(nextUrl)
-            val displayList = resp.displayList
+            val displayList = visibleItems(resp.displayList)
             val hasNext = resp.nextPageUrl != null
             if (displayList.isNotEmpty()) {
                 applyLoadMoreData(fragment, displayList)
-                loadMoreState.value = LoadState.LOADED(hasContent = true, hasNext = hasNext)
-            } else {
-                loadMoreState.value = LoadState.LOADED(hasContent = true, hasNext = false)
             }
+            // 整页都被屏蔽时还有下一页，不能当成到底了
+            val canLoadMore = resp.displayList.isNotEmpty() && hasNext
+            loadMoreState.value = LoadState.LOADED(hasContent = true, hasNext = canLoadMore)
         } else {
             loadMoreState.value = LoadState.LOADED(hasContent = true, hasNext = false)
+        }
+    }
+
+    private var isObservingMute = false
+
+    override fun attachFragment(fragment: FragmentT) {
+        super.attachFragment(fragment)
+        if (muteRule != MuteRule.Disabled && !isObservingMute) {
+            isObservingMute = true
+            coroutineScope.launch {
+                MuteStore.changes.collect { hideNewlyMutedItems() }
+            }
+        }
+    }
+
+    private suspend fun visibleItems(displayList: List<ModelT>): List<ModelT> {
+        if (muteRule == MuteRule.Disabled) {
+            return displayList
+        }
+        MuteStore.awaitLoaded()
+        return displayList.filterNot { MuteStore.shouldHide(it, muteRule) }
+    }
+
+    /** 名单变了只拿掉新命中的条目；取消屏蔽的条目要等下次刷新才回来。 */
+    private fun hideNewlyMutedItems() {
+        val current = holderList.value ?: return
+        val visible = current.filterNot { item ->
+            item is MuteSubjectItem && MuteStore.shouldHide(item.muteSubject, muteRule)
+        }
+        if (visible.size != current.size) {
+            holderList.value = visible
         }
     }
 

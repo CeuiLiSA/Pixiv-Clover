@@ -20,6 +20,7 @@ import ceui.lisa.slinky.ui.findFragmentOrNull
 import ceui.lisa.slinky.ui.pxValue
 import ceui.lisa.slinky.ui.setOnClick
 import ceui.lisa.slinky.utils.toGlideUrl
+import ceui.lisa.slinky.mute.MuteRule
 import com.bumptech.glide.Glide
 import kotlin.math.roundToInt
 
@@ -32,7 +33,8 @@ class NovelSeriesRepository(
         seriesDetail.value = resp
         resp
     },
-    dataMapper = { illust -> NovelSeriesHolder(illust, 0, 0) }
+    dataMapper = { illust -> NovelSeriesHolder(illust, 0, 0) },
+    muteRule = MuteRule.Disabled,
 ) {
     override suspend fun applyRefreshData(
         fragment: IllustSeriesFragment,

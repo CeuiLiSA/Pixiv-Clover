@@ -72,6 +72,11 @@ class TagsFlowView(context: Context, attrs: AttributeSet?, defStyle: Int) :
     }
 
 
+    private var onCellLongClickListener: ((cell: View, index: Int) -> Unit)? = null
+    fun setOnCellLongClickListener(listener: (cell: View, index: Int) -> Unit) {
+        onCellLongClickListener = listener
+    }
+
     fun getTags(): List<Tag> {
         return tagList.toList()
     }
@@ -125,6 +130,11 @@ class TagsFlowView(context: Context, attrs: AttributeSet?, defStyle: Int) :
         }
         cell.root.setOnClick {
             onCellClickListener?.invoke(it, selfIndex)
+        }
+        cell.root.setOnLongClickListener {
+            val listener = onCellLongClickListener ?: return@setOnLongClickListener false
+            listener.invoke(it, selfIndex)
+            true
         }
         addView(cell.root, childCount - nonCellCount)
         return cell.root

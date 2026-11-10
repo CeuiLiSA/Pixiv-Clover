@@ -134,7 +134,7 @@ open class NavFragment(layoutId: Int) : Fragment(layoutId), ActionBarContainer, 
                             )
                             val actionView = actionBinding.root
                             actionView.setOnClick {
-                                actionItem.action.invoke()
+                                actionItem.action.invoke(it)
                             }
                             actionBinding.lifecycleOwner = viewLifecycleOwner
                             actionBinding.actionItem = actionItem

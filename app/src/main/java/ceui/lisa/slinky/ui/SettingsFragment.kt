@@ -71,6 +71,9 @@ class SettingsRepository : CustomRepository<SettingsFragment>() {
             tagItems.add(TabHolder(getString(R.string.ai_works_display_settings)) {
                 pushFragment(R.id.aiSettingsFragment)
             })
+            tagItems.add(TabHolder(getString(R.string.mute_management)) {
+                pushFragment(R.id.muteManagementFragment)
+            })
             tagItems.add(TabHolder(getString(R.string.export_user_json)) {
                 val account = Settings.loggedInAccount
                 val json = Util.gson.toJson(account)

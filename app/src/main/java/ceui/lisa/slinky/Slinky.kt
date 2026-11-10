@@ -2,6 +2,7 @@ package ceui.lisa.slinky
 
 import android.app.Application
 import ceui.lisa.slinky.core.PreferencePool
+import ceui.lisa.slinky.mute.MuteStore
 import ceui.lisa.slinky.network.RoomDB
 import ceui.lisa.slinky.network.Settings
 import ceui.lisa.slinky.utils.SoundPlay
@@ -14,6 +15,7 @@ class Slinky : Application() {
     override fun onCreate() {
         super.onCreate()
         RoomDB.attach(this)
+        MuteStore.load()
         MMKV.initialize(this)
         SoundPlay.init(this)
         Timber.plant(Timber.DebugTree())

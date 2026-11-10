@@ -12,6 +12,7 @@ import ceui.lisa.slinky.network.Client
 import ceui.lisa.slinky.network.ObjectPool
 import ceui.lisa.slinky.network.paging.ListShow
 import ceui.lisa.slinky.ui.novel.UserCreatedNovelsHolder
+import ceui.lisa.slinky.mute.MuteRule
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
@@ -31,7 +32,8 @@ class UserProfileRepository(
             delay(1600L)
             Client.appApi.userCreatedIllust(userId, ObjectType.ILLUST)
         },
-        dataMapper = { PostItem(it, showUserLayout = false) }
+        dataMapper = { PostItem(it, showUserLayout = false) },
+        muteRule = MuteRule.ExemptUser(userId),
     ) {
         override suspend fun applyRefreshData(
             fragment: UserFragment,

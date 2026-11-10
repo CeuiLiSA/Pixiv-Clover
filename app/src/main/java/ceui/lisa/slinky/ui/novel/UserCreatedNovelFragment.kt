@@ -13,13 +13,17 @@ import ceui.lisa.slinky.network.Client
 import ceui.lisa.slinky.ui.ViewPagerContainer
 import ceui.lisa.slinky.ui.setUpStaggerLayoutManager
 import ceui.lisa.slinky.ui.viewBinding
+import ceui.lisa.slinky.mute.MuteRule
 
 class UserCreatedNovelFragment : SlinkyListFragment() {
 
     private val safeArgs: UserCreatedNovelFragmentArgs by navArgs()
     private val binding by viewBinding(FragmentSlinkyListBinding::bind)
     private val viewModel by listViewModel({ safeArgs.userId }) { userId ->
-        NovelListRepository(loader = { Client.appApi.userCreatedNovel(userId) })
+        NovelListRepository(
+            loader = { Client.appApi.userCreatedNovel(userId) },
+            muteRule = MuteRule.ExemptUser(userId),
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

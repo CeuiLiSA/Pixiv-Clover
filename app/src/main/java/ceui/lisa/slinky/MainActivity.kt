@@ -7,6 +7,7 @@ import android.graphics.Shader
 import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
+import android.view.View
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -34,7 +35,7 @@ import javax.net.ssl.SSLHandshakeException
 import kotlin.math.roundToInt
 
 
-class ActionItem(val iconRes: Int?, val action: () -> Unit)
+class ActionItem(val iconRes: Int?, val action: (sender: View) -> Unit)
 
 
 class ActionBarViewModel : ViewModel() {

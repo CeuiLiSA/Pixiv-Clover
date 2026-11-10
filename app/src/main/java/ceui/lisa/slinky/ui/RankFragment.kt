@@ -28,6 +28,7 @@ import ceui.lisa.slinky.styles.LinearItemDecoration
 import ceui.lisa.slinky.styles.LinearItemHorizontalDecoration
 import ceui.lisa.slinky.styles.SpacesItemDecoration
 import ceui.lisa.slinky.utils.visibleOrGone
+import ceui.lisa.slinky.mute.MuteSubjectItem
 import timber.log.Timber
 import kotlin.math.roundToInt
 
@@ -106,7 +107,9 @@ inline fun <reified ActionReceiverT> View.findActionReceiverOrNull(): ActionRece
     return fragment?.findActionReceiverOrNull<ActionReceiverT>()
 }
 
-class IllustItem(val illust: Illust) : SlinkyItem() {
+class IllustItem(val illust: Illust) : SlinkyItem(), MuteSubjectItem {
+
+    override val muteSubject: Any get() = illust
 
     init {
         ObjectPool.updateIllust(illust)

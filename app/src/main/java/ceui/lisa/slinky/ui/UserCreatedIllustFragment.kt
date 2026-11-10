@@ -12,6 +12,7 @@ import ceui.lisa.slinky.core.setUpSlinkyList
 import ceui.lisa.slinky.databinding.FragmentSlinkyListBinding
 import ceui.lisa.slinky.models.ObjectType
 import ceui.lisa.slinky.network.Client
+import ceui.lisa.slinky.mute.MuteRule
 
 class UserCreatedIllustFragment : SlinkyListFragment() {
 
@@ -21,7 +22,8 @@ class UserCreatedIllustFragment : SlinkyListFragment() {
         { safeArgs.userId },
         { safeArgs.type }) { userId, type ->
         IllustListRepository(
-            loader = { Client.appApi.userCreatedIllust(userId, type) }
+            loader = { Client.appApi.userCreatedIllust(userId, type) },
+            muteRule = MuteRule.ExemptUser(userId),
         )
     }
 

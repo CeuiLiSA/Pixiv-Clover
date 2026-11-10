@@ -17,6 +17,7 @@ import ceui.lisa.slinky.databinding.FragmentSlinkyListBinding
 import ceui.lisa.slinky.databinding.ItemPostBinding
 import ceui.lisa.slinky.models.Illust
 import ceui.lisa.slinky.models.User
+import ceui.lisa.slinky.mute.MuteSubjectItem
 import ceui.lisa.slinky.network.Client
 import ceui.lisa.slinky.network.ObjectPool
 import ceui.lisa.slinky.utils.toGlideUrl
@@ -81,7 +82,9 @@ class PostFragment : SlinkyListFragment(), PostAction,
 class PostItem(
     val illust: Illust,
     val showUserLayout: Boolean = true
-) : SlinkyItem() {
+) : SlinkyItem(), MuteSubjectItem {
+
+    override val muteSubject: Any get() = illust
 
     override fun areItemsTheSame(other: SlinkyItem): Boolean {
         return illust.id == (other as? PostItem)?.illust?.id

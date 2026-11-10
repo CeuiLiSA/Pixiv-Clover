@@ -5,6 +5,8 @@ import android.text.SpannableString
 import android.view.View
 import androidx.navigation.fragment.navArgs
 import ceui.lisa.annotations.ItemHolder
+import ceui.lisa.slinky.ActionItem
+import ceui.lisa.slinky.R
 import ceui.lisa.slinky.core.CustomRepository
 import ceui.lisa.slinky.core.LoadState
 import ceui.lisa.slinky.core.SlinkyListFragment
@@ -19,6 +21,7 @@ import ceui.lisa.slinky.models.Illust
 import ceui.lisa.slinky.models.Novel
 import ceui.lisa.slinky.models.NovelImages
 import ceui.lisa.slinky.models.WebNovel
+import ceui.lisa.slinky.mute.showNovelMuteMenu
 import ceui.lisa.slinky.network.Client
 import ceui.lisa.slinky.network.ObjectPool
 import ceui.lisa.slinky.ui.SlinkyItem
@@ -165,6 +168,13 @@ class NovelTextFragment : SlinkyListFragment() {
             actionbarContent.title.value = it?.title
             visitNovel(it)
         }
+        actionbarContent.endItems.value = listOf(
+            ActionItem(R.drawable.ic_more) { sender ->
+                ObjectPool.get<Novel>(safeArgs.novelId).value?.let { novel ->
+                    showNovelMuteMenu(sender, novel)
+                }
+            }
+        )
         val binding = FragmentSlinkyListBinding.bind(view)
         setUpDisablePage(binding.deletedFrame)
         setUpSlinkyList(binding.listView, binding.refreshLayout, binding.itemLoading, listViewModel)
